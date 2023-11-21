@@ -1,0 +1,20 @@
+/* The Styling section. Here we define the variables. */
+:root{
+    --primary: #202124;
+    --secondary: #cb6ce6;
+    --third: #E4D9FF;
+    --nav-text: #CCCCCC;
+    --white: #fff;
+    --black: #000;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: var(--primary);
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}

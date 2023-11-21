@@ -1,0 +1,64 @@
+main {
+    width: calc(100% - 19rem);
+    margin-left: 19rem;
+}
+
+#tend{
+    background-image: url(../ASSETS/La-Casa-de-Papel-nomes-cidades.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 40rem;
+}
+
+#tend div{
+    position: absolute;
+    left: 350px;
+    top: 230px;
+    width: 600px;
+}
+
+#tend div h1{
+    font-size: 40px;
+    color: var(--white);
+}
+
+nav ul li a:active{
+    color: var(--secondary);
+}
+
+#tend div button{
+    margin-top: 20px;
+    margin-bottom: 15px;
+    padding: 0.5rem;
+    background: transparent;
+    border-radius: 5px;
+    color: var(--white);
+    border: 1px solid #E4D9FF;
+}
+
+#tend div p{
+    color: var(--white);
+    font-size: 20px;
+    background-color: #202124ac;
+    backdrop-filter: blur(2px);
+    padding: 0.5rem;
+    border: #E4D9FF solid 1px;
+    border-radius: 2px;
+}
+
+#moviesSec div div{
+    display: flex;
+}
+
+#moviesSec div h1{
+    margin: 20px;
+    font-size: 40px;
+    color: var(--white);
+}
+
+
+#moviesSec div div img{
+    margin: 5px;
+    width: 175px;
+    height: 250px;
+}
