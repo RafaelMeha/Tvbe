@@ -5,43 +5,24 @@ main {
     background-color: var(--primary);
 }
 
-#search-user{
-    width: calc(100% - 4rem);
-    height: 4rem;
-    padding: 0rem 2rem;
-    background-color: var(--primary);
-    border-bottom: 1px solid red;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-#search{
-    width: 20rem;
-    height: 2rem;
-    outline: none;
-    background-color: var(--primary);
-    border: 1px solid var(--secondary);
-}
-
-#movies-page{
+section{
     display: flex;
     gap: 1rem;
     flex-direction: column;
-    padding: 0rem 2rem 2rem 2rem;
 }
 
 .spanMovie{
     color: #cb6ce6;
 }
 
-h1{
-    color: #fff;
-    font-size: 50px;
+#pager-top{
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-h1::after{
+#pager-top::after{
     content:'';
     position: absolute;
     top: 100%;
@@ -51,6 +32,41 @@ h1::after{
     background-color: var(--white);
 }
 
+h1{
+    color: #fff;
+    font-size: 50px;
+}
+
+#search-user{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+#search{
+    position: relative;
+    width: 20rem;
+    height: 2rem;
+    padding-left: 2rem;
+    color: var(--nav-text);
+    font-size: 1rem;
+    outline: none;
+    background-color: var(--primary);
+    border: 1px solid var(--secondary);
+}
+
+#magnify{
+    position: absolute;
+    width: 1.6rem;
+    margin-left: .2rem;
+}
+
+#user{
+    width: 2rem;
+    height: 2rem;
+    background: url('../ASSETS/CEOS/avatar.png') center/contain no-repeat;
+}
+
 #filtros{
     width: calc(100% - 2.2rem);
     height: 6rem;
@@ -58,6 +74,7 @@ h1::after{
     background-color: var(--primary);
     border: 2px solid var(--secondary);
     display: flex;
+    gap: 1rem;
     flex-direction: column;
 }
 

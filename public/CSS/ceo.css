@@ -36,18 +36,17 @@ p{
 .ceo{
     border: #cb6ce6 solid 1px;
     width: 400px;
-    height: 500px;
+    height: 525px;
     margin-top: 50px;
     margin-right: 50px;
 }
 
-.ceo img{
+.ceo .pfp{
     width: 200px;
     height: 200px;
     position: relative;
     left: 25%;
     top: 5%;
-    background-color: #cb6ce6;
     border-radius: 50%;
 }
 
@@ -56,7 +55,7 @@ p{
     font-size: 50px;
     text-align: center;
     position: relative;
-    top: 3%;
+    top: 4%;
 }
 
 .ceo h1::after{
@@ -74,4 +73,29 @@ p{
     top: 5%;
     padding: 5px;
     text-align: center;
+}
+
+.ceo .medias{
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    width: 100%;
+    padding: 30px 10px 10px;
+    gap: 0.3rem;
+}
+
+.ceo .each{
+    gap: 0.3rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.ceo .each a{
+    color: var(--nav-text);
+    text-decoration: none;
+}
+
+.ceo .each a:hover{
+    color: var(--secondary);
 }

@@ -48,15 +48,18 @@
         </li>
     </header>
     <main>
-        <section id="search-user">
-            <input type="text" id="search">
-        </section>
-
-        <section id="movies-page">
-            <h1>M<span class="spanMovie">o</span>vies</h1>
+        <section>
+            <div id="pager-top">
+                <h1>M<span class="spanMovie">o</span>vies</h1>
+                <div id="search-user">
+                    <input type="text" id="search" placeholder="Search for a movie...">
+                    <img src="../../ASSETS/nav-icons/magnify-glass.png" alt="Magnify" id="magnify">
+                    <button id="user"></button>
+                </div>
+            </div>
 
             <div id="filtros">
-                <h2>Filters</h2>
+                <h2>Filters<h2>
                 <form action="">
                     <select name="category">
                         <option value="a"> Category

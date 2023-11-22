@@ -101,3 +101,13 @@ p{
 .panel {
   display: none;
 }
+
+
+.subFAQ{
+  color: #cb6ce6;
+  text-decoration: none;
+}
+
+.subFAQ:hover{
+  text-decoration: underline;
+}
