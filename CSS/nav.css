@@ -11,13 +11,33 @@ header{
     align-items: center;
 }
 
+#logo{
+    width: 100%;
+}
+
 nav{
     width: 100%;
     height: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
     display: flex;
     gap: .8rem;
     flex-direction: column;
 }
+
+nav::-webkit-scrollbar{
+    width: 10px;
+}
+
+nav::-webkit-scrollbar-thumb{
+    background-color: transparent;
+    border-radius: 25px;
+}
+  
+nav::-webkit-scrollbar-track{
+    background-color: var(--primary);
+}
+  
 
 nav h3{
     position: relative;
@@ -62,7 +82,7 @@ ul li a:hover{
 #ceos{
     list-style: none;
     font-size: 1.1rem;
-    margin: 0rem;
+    margin: 1rem 0rem;
 }
 
 #ceos a{
@@ -75,4 +95,21 @@ ul li a:hover{
 
 #ceos a:hover{
     color: var(--secondary);
+}
+
+@media screen and (max-width: 425px){
+    header{
+        width: 100%;
+        height: 4rem;
+        border-right: none;
+        border-bottom: 1px solid var(--nav-text);
+    }
+
+    nav{
+        display: none;
+    }
+
+    #ceos{
+        display: none;
+    }
 }
