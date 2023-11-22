@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+section{
+    padding: 2rem;
+}
+
+body{
+    color: white;
+}
+
+.containers{
+    position: relative;
+    width: 1100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary);
+    flex-wrap: wrap;
+    padding: 30px;
+    margin-top: 8%;
+}

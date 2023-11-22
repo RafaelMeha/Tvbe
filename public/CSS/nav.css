@@ -96,20 +96,3 @@ ul li a:hover{
 #ceos a:hover{
     color: var(--secondary);
 }
-
-@media screen and (max-width: 425px){
-    header{
-        width: 100%;
-        height: 4rem;
-        border-right: none;
-        border-bottom: 1px solid var(--nav-text);
-    }
-
-    nav{
-        display: none;
-    }
-
-    #ceos{
-        display: none;
-    }
-}

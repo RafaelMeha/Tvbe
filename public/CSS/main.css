@@ -1,6 +1,10 @@
-main {
+main{
     width: calc(100% - 19rem);
     margin-left: 19rem;
+}
+
+section{
+    padding: 2rem;
 }
 
 #tend{
