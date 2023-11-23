@@ -8,7 +8,7 @@ section{
 }
 
 #tend{
-    background-image: url(../ASSETS/La-Casa-de-Papel-nomes-cidades.jpg);
+    background-image: url();
     background-repeat: no-repeat;
     background-size: 100%;
     height: 40rem;
@@ -65,4 +65,39 @@ nav ul li a:active{
     margin: 5px;
     width: 175px;
     height: 250px;
+}
+
+
+.genre-container {
+    margin-bottom: 20px;
+}
+
+.movie-list {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px; /* Adjust the space between movie images */
+}
+
+.movie-list::-webkit-scrollbar {
+    display: none; /* This hides the scrollbar in Webkit browsers */
+}
+
+.movie-list img {
+    width: 160px; /* Adjust image width as needed */
+    height: auto;
+    flex: 0 0 auto; /* Do not grow or shrink */
+    cursor: grab;
+}
+
+
+.genre-title {
+    font-size: 24px; /* Example: Set the font size */
+    color: #ffffff; /* Example: Set the text color */
+    margin-bottom: 10px; /* Example: Set the space below the title */
+    /* Add other styles as needed */
+}
+
+
+.second-letter {
+    color: #cb6ce6; /* Replace with your desired color */
 }

@@ -38,31 +38,29 @@ function showMovies(movies) {
     main.innerHTML = "";
 
     movies.forEach((movie) => {
-        const { poster_path, title, vote_average, overview } = movie;
+        const { id, poster_path, title, vote_average } = movie;
 
-        const movieEl = document.createElement("div");
-        movieEl.classList.add("movie");
+        const movieLink = document.createElement("a");
+        movieLink.href = `eachMoviee.html?movieId=${id}`; // URL for movie details
+        movieLink.classList.add("movie");
 
-        movieEl.innerHTML = `
+        movieLink.innerHTML = `
             <img
                 src="${IMGPATH + poster_path}"
                 alt="${title}"
             />
             <div class="movie-info">
                 <h3>${title}</h3>
-                <span class="${getClassByRate(
-                    vote_average
-                )}">${vote_average}</span>
+                <span class="${getClassByRate(vote_average)}">${vote_average}</span>
             </div>
-            <div class="overview">
-                <h3>Overview:</h3>
-                ${overview}
-            </div>
+            <!-- Overview removed -->
         `;
 
-        main.appendChild(movieEl);
+        main.appendChild(movieLink);
     });
 }
+
+
 
 function getClassByRate(vote) {
     if (vote >= 8) {
@@ -86,6 +84,72 @@ form.addEventListener("submit", (e) => {
         search.value = "";
     }
 });
+
+
+
+
+
+
+
+// ... Existing code ...
+
+async function applyFilters(page) {
+    let url = `${API_BASE_URL}?api_key=${API_KEY}&page=${page}`;
+
+    // Check for a search term and apply it if present
+    if (currentSearchTerm) {
+        url = `${SEARCHAPI}${currentSearchTerm}&page=${page}`;
+    } else {
+        // Apply genre filter if selected
+        const genre = document.querySelector('[name="genre"]').value;
+        if (genre && genre !== 'a') { // Assuming 'a' is the value for "Select Genre"
+            url += `&with_genres=${genre}`;
+        }
+
+        // Apply year filter if selected
+        const year = document.querySelector('[name="year"]').value;
+        if (year && year !== 'a') { // Assuming 'a' is the value for "Select Year"
+            url += `&primary_release_year=${year}`;
+        }
+
+        // Note: The TMDb API does not have a rating filter, so we will filter by vote_average after fetching the results.
+    }
+    
+    try {
+        const response = await fetch(url);
+        const respData = await response.json();
+        totalPages = respData.total_pages;
+
+        let filteredResults = respData.results;
+        // Apply rating filter after fetching the results
+        const rating = document.querySelector('[name="rating"]').value;
+        if (rating && rating !== 'a') { // Assuming 'a' is the value for "Select Rating"
+            filteredResults = filteredResults.filter(movie => Math.round(movie.vote_average) >= parseInt(rating));
+        }
+
+        showMovies(filteredResults);
+        updatePageControls();
+    } catch (error) {
+        console.error('Error fetching filtered movies:', error);
+    }
+}
+
+// ... Rest of the existing code ...
+
+// Update the form event listener to handle submissions with only one filter
+document.getElementById('filters-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Clear the search term if the filters form is submitted
+    currentSearchTerm = '';
+    currentPage = 1; // Reset to the first page for new filters
+    applyFilters(currentPage); // Apply filters and fetch movies
+});
+
+
+
+
+
 
 
 

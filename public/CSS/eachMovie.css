@@ -1,0 +1,35 @@
+.movie-detail-container {
+    display: flex;
+    background-color: #222; /* Dark background */
+    color: #fff; /* White text color */
+    padding: 20px;
+}
+
+.movie-poster {
+    width: 200px; /* Adjust as necessary */
+    margin-right: 20px;
+}
+
+.movie-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-title {
+    font-size: 2em;
+}
+
+.movie-rating, .movie-duration, .movie-release-year, .movie-genres {
+    font-size: 1em;
+    margin-right: 10px;
+}
+
+.movie-summary {
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+.movie-cast, .movie-director {
+    font-size: 0.9em;
+    margin-top: 5px;
+}

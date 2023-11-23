@@ -64,30 +64,32 @@
 
             <div id="filtros">
                 <h2>Filters<h2>
-                <form action="" id="filters-form">
-                    <select name="category">
-                        <option value="a"> Category
-                        <option value="b"> Comedy
-                        <option value="c"> Action
-                        <option value="d"> Terror
-                    </select>
-
-                    <select name="year">
-                        <option value="a"> Year
-                        <option value="b"> 2023
-                        <option value="c"> 2022
-                        <option value="d"> 2021
-                    </select>
-
-                    <select name="rating">
-                        <option value="a"> Rating
-                        <option value="b"> 10
-                        <option value="c"> 9
-                        <option value="d"> 8
-                    </select>
-
-                    <button>Search</button>
-                </form>
+                    <form id="filters-form">
+                        <select name="genre">
+                            <option value="">Select Genre</option>
+                            <option value="28">Action</option>
+                            <option value="35">Comedy</option>
+                            <option value="27">Horror</option>
+                            <!-- Add more genres with their correct IDs -->
+                        </select>
+                    
+                        <select name="year">
+                            <option value="">Select Year</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <!-- Add more years as needed -->
+                        </select>
+                    
+                        <select name="rating">
+                            <option value="">Select Rating</option>
+                            <option value="10">10</option>
+                            <option value="9">9</option>
+                            <option value="8">8</option>
+                            <!-- Add more ratings as needed -->
+                        </select>
+                        <button type="submit">Search</button>
+                    </form>                    
             </div>
 
             <div id="movies">

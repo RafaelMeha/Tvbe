@@ -145,7 +145,13 @@ button:hover{
     flex-wrap: wrap;
 }
 
-.movie {
+#movie a{
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.movie{
     background-color: var(--primary);
     border-radius: 3px;
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
@@ -153,6 +159,7 @@ button:hover{
     position: relative;
     margin: 1rem;
     width: 245px;
+    text-decoration: none;
 }
 
 .movie img {
