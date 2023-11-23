@@ -1,4 +1,7 @@
-main {
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
+
+
+main{
     width: calc(100% - 19rem);
     min-height: 100lvh;
     margin-left: 19rem;
@@ -43,8 +46,13 @@ h1{
     align-items: center;
 }
 
-#search{
+#search-form{
     position: relative;
+    display: flex;
+    align-items: center;
+}
+
+#search{
     width: 20rem;
     height: 2rem;
     padding-left: 2rem;
@@ -55,10 +63,15 @@ h1{
     border: 1px solid var(--secondary);
 }
 
+#search::placeholder{
+    color: var(--nav-text);
+}
+
 #magnify{
     position: absolute;
+    left: 1%;
     width: 1.6rem;
-    margin-left: .2rem;
+    height: 1.6rem;
 }
 
 #user{
@@ -83,7 +96,7 @@ h2{
     font-size: 2rem;
 }
 
-form{
+#filters-form{
     width: 100%;
     display: grid;
     gap: 2rem;
@@ -114,7 +127,87 @@ button:hover{
 
 #movies{
     width: 100%;
+    height: auto;
     margin-top: 1rem;
-    min-height: 100lvh;
-    border: 1px solid red;
+    border: 1px solid var(--secondary);
+}
+
+.search::placeholder {
+    color: #7378c5;
+}
+
+.search:focus {
+    background-color: #22254b;
+    outline: none;
+}
+
+#movies {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movie {
+    background-color: var(--primary);
+    border-radius: 3px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: relative;
+    margin: 1rem;
+    width: 288px;
+}
+
+.movie img {
+    width: 100%;
+}
+
+.movie-info {
+    color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem 1rem;
+    letter-spacing: 0.5px;
+}
+
+.movie-info h3 {
+    margin: 0;
+}
+
+.movie-info span {
+    background-color: #22254b;
+    border-radius: 3px;
+    font-weight: bold;
+    padding: 0.25rem 0.5rem;
+}
+.movie-info span.green {
+    color: rgb(39, 189, 39);
+}
+
+.movie-info span.orange {
+    color: orange;
+}
+
+.movie-info span.red {
+    color: rgb(189, 42, 42);
+}
+
+.overview {
+    background-color: #fff;
+    padding: 2rem;
+    position: absolute;
+    max-height: 100%;
+    overflow: auto;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    transform: translateY(101%);
+    transition: transform 0.3s ease-in;
+}
+
+.overview h3 {
+    margin-top: 0;
+}
+
+.movie:hover .overview {
+    transform: translateY(0);
 }

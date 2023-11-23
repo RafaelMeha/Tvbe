@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../CSS/nav.css">
     <link rel="stylesheet" href="../../CSS/main.css">
     <link rel="stylesheet" href="../../CSS/movies-series.css">
+
+    
 </head>
 
 <body>
@@ -51,16 +53,18 @@
         <section>
             <div id="pager-top">
                 <h1>M<span class="spanMovie">o</span>vies</h1>
-                <div id="search-user">
-                    <input type="text" id="search" placeholder="Search for a movie...">
-                    <img src="../../ASSETS/nav-icons/magnify-glass.png" alt="Magnify" id="magnify">
+                <div action="" id="search-user">
+                    <form id="search-form">
+                        <input type="text" id="search" placeholder="Search movie..." class="search"/>
+                        <img src="../../ASSETS/nav-icons/magnify-glass.png" alt="Magnify" id="magnify">
+                    </form>
                     <button id="user"></button>
                 </div>
             </div>
 
             <div id="filtros">
                 <h2>Filters<h2>
-                <form action="">
+                <form action="" id="filters-form">
                     <select name="category">
                         <option value="a"> Category
                         <option value="b"> Comedy
@@ -86,9 +90,12 @@
                 </form>
             </div>
 
-            <div id="movies"></div>
+            <div id="movies">
+                	
+            </div>
         </section>
     </main>
+    <script src="../../JS/movies.js"></script>
 </body>
 
 </html>

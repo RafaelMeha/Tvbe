@@ -45,17 +45,17 @@ p{
     width: 200px;
     height: 200px;
     position: relative;
-    left: 25%;
+    left: 24%;
     top: 5%;
     border-radius: 50%;
 }
 
 .ceo h1{
     color: #fff;
-    font-size: 50px;
+    font-size: 48px;
     text-align: center;
     position: relative;
-    top: 4%;
+    top: 5%;
 }
 
 .ceo h1::after{
