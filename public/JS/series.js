@@ -2,12 +2,12 @@ let currentPage = 1;
 let currentSearchTerm = '';
 let totalPages = 100;
 
-const API_BASE_URL = "https://api.themoviedb.org/3/movie/now_playing";
+const API_BASE_URL = "https://api.themoviedb.org/3/tv/popular";
 const API_KEY = "04c35731a5ee918f014970082a0088b1";
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
 const SEARCHAPI =
-    "https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query=";
+    "https://api.themoviedb.org/3/search/tv?&api_key=04c35731a5ee918f014970082a0088b1&query=";
 
 const main = document.getElementById("movies");
 const form = document.getElementById("search-form");
@@ -109,3 +109,4 @@ document.getElementById("prevButton").addEventListener("click", () => {
         window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to the top
     }
 });
+

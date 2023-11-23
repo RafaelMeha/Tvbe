@@ -121,7 +121,7 @@ button{
 }
 
 button:hover{
-    transform: scale(1.1);
+    transform: scale(1);
 }
 
 #movies{
@@ -152,7 +152,7 @@ button:hover{
     overflow: hidden;
     position: relative;
     margin: 1rem;
-    width: 288px;
+    width: 245px;
 }
 
 .movie img {
@@ -209,4 +209,20 @@ button:hover{
 
 .movie:hover .overview {
     transform: translateY(0);
+}
+
+#btnsNPMovies button{
+    padding: 15px;
+    color: var(--primary);
+    border: #000 solid 1px;
+}
+
+#btnsNPMovies span{
+    color: #fff;
+    margin: 20px;
+}
+
+#btnsNPMovies{
+    align-self: center;
+    left: 10%;
 }
