@@ -44,8 +44,6 @@ async function fetchMoviesByGenre(genreId, page = 1) {
     }
 }
 
-
-
 async function displayMoviesForAllGenres() {
     const moviesSec = document.getElementById('moviesSec');
     moviesSec.innerHTML = ''; // Clear existing content
@@ -117,11 +115,9 @@ function displayMovieDetails() {
     currentMovieIndex = (currentMovieIndex + 1) % topRatedMovies.length;
 }
 
-
 // Call these functions to populate the sections with movies and movie details
 displayMoviesForAllGenres();
 fetchTopRatedMovies();
 
 // Update the movie details every 30 seconds
-setInterval(displayMovieDetails, 30000);
-
+setInterval(displayMovieDetails, 10000);

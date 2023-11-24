@@ -89,6 +89,9 @@ nav ul li a:active{
     cursor: grab;
 }
 
+.movie-list img:hover{
+    border: #cb6ce6 solid 1px;
+}
 
 .genre-title {
     font-size: 24px; /* Example: Set the font size */
