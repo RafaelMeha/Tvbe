@@ -19,6 +19,10 @@
     font-size: 2em;
 }
 
+.movie-title::first-child::first-letter {
+    color: var(--secondary);
+}
+
 .movie-rating, .movie-duration, .movie-release-year, .movie-genres {
     font-size: 1em;
     margin-right: 10px;

@@ -29,6 +29,8 @@ function displayMovieDetails(data) {
     
     const director = data.credits.crew.find(member => member.job === 'Director');
     document.querySelector('.movie-director').textContent = `Directed by: ${director ? director.name : 'N/A'}`;
+
+    document.title = `Tvbe - ${data.title}`;
 }
 
 if (movieId) {

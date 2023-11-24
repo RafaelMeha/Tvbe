@@ -44,6 +44,9 @@ function showMovies(movies) {
         movieLink.href = `eachMoviee.html?movieId=${id}`; // URL for movie details
         movieLink.classList.add("movie");
 
+        // Format the vote_average to one decimal place
+        const formattedVoteAverage = parseFloat(vote_average).toFixed(1);
+
         movieLink.innerHTML = `
             <img
                 src="${IMGPATH + poster_path}"
@@ -51,7 +54,7 @@ function showMovies(movies) {
             />
             <div class="movie-info">
                 <h3>${title}</h3>
-                <span class="${getClassByRate(vote_average)}">${vote_average}</span>
+                <span class="${getClassByRate(vote_average)}">${formattedVoteAverage}</span>
             </div>
             <!-- Overview removed -->
         `;
