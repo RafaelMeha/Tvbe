@@ -38,10 +38,13 @@ function showMovies(series) {
     main.innerHTML = "";
 
     series.forEach((serie) => {
-        const { poster_path, name, vote_average, overview } = serie; // Use 'name' instead of 'title'
+        const {id, poster_path, name, vote_average} = serie; // Use 'name' instead of 'title'
 
-        const seriesEl = document.createElement("div");
+        const seriesEl = document.createElement("a");
+        seriesEl.href = `eachMoviee.html?seriesId=${id}`; // URL for movie detail
         seriesEl.classList.add("movie");
+
+        const formattedVoteAverage = parseFloat(vote_average).toFixed(1);
 
         seriesEl.innerHTML = `
             <img
@@ -49,14 +52,8 @@ function showMovies(series) {
                 alt="${name}"
             />
             <div class="movie-info">
-                <h3>${name}</h3> <!-- Use 'name' here -->
-                <span class="${getClassByRate(
-                    vote_average
-                )}">${vote_average}</span>
-            </div>
-            <div class="overview">
-                <h3>Overview:</h3>
-                ${overview}
+                <h3>${name}</h3> 
+                <span class="${getClassByRate(vote_average)}">${formattedVoteAverage}</span>
             </div>
         `;
 

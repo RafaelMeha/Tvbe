@@ -56,7 +56,6 @@ function showMovies(movies) {
                 <h3>${title}</h3>
                 <span class="${getClassByRate(vote_average)}">${formattedVoteAverage}</span>
             </div>
-            <!-- Overview removed -->
         `;
 
         main.appendChild(movieLink);
@@ -88,13 +87,6 @@ form.addEventListener("submit", (e) => {
     }
 });
 
-
-
-
-
-
-
-// ... Existing code ...
 
 async function applyFilters(page) {
     let url = `${API_BASE_URL}?api_key=${API_KEY}&page=${page}`;
@@ -137,8 +129,6 @@ async function applyFilters(page) {
     }
 }
 
-// ... Rest of the existing code ...
-
 // Update the form event listener to handle submissions with only one filter
 document.getElementById('filters-form').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -148,12 +138,6 @@ document.getElementById('filters-form').addEventListener('submit', function(e) {
     currentPage = 1; // Reset to the first page for new filters
     applyFilters(currentPage); // Apply filters and fetch movies
 });
-
-
-
-
-
-
 
 
 function updatePageControls() {
@@ -173,6 +157,6 @@ document.getElementById("prevButton").addEventListener("click", () => {
     if (currentPage > 1) {
         currentPage -= 1;
         getMovies(currentPage);
-        window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to the top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 });

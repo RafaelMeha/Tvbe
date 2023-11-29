@@ -1,3 +1,7 @@
+main{
+    min-height: 100lvh;
+}
+
 .mainTit{
     color: #fff;
     font-size: 50px;
@@ -18,6 +22,10 @@
 p{
     color: #ccc;
     font-size: 25px;
+    padding: 1rem 0rem;main{
+    width: calc(100% - 19rem);
+    margin-left: 19rem;
+}
 }
 
 .spanCEO{
@@ -29,25 +37,26 @@ p{
 }
 
 .CEOS{
-    display: flex;
-    justify-content: space-evenly;
+    width: 100%;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 
+        repeat(auto-fill, minmax(25rem, 1fr));
 }
 
 .ceo{
+    min-height: 70lvh;
     border: #cb6ce6 solid 1px;
-    width: 400px;
-    height: 525px;
-    margin-top: 50px;
-    margin-right: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .ceo .pfp{
-    width: 200px;
-    height: 200px;
-    position: relative;
-    left: 24%;
-    top: 5%;
+    width: 15rem;
+    height: 15rem;
     border-radius: 50%;
+    align-self: center;
 }
 
 .ceo h1{
@@ -78,9 +87,7 @@ p{
 .ceo .medias{
     display: flex;
     flex-direction: column;
-    height: 50px;
-    width: 100%;
-    padding: 30px 10px 10px;
+    padding: 2rem 1rem 0rem 1rem;
     gap: 0.3rem;
 }
 
@@ -99,3 +106,15 @@ p{
 .ceo .each a:hover{
     color: var(--secondary);
 }
+
+@media screen and (max-width: 1024px){
+    main{
+        width: 100%;
+        min-height: 100lvh;
+        margin-left: 0rem;
+    }
+
+    section{
+        width: calc(100% - 4rem);
+    }
+}   

@@ -8,17 +8,15 @@ section{
 }
 
 #tend{
-    background-image: url();
-    background-repeat: no-repeat;
-    background-size: 100%;
+    background: url() center/cover no-repeat;
     height: 40rem;
+    display: flex;
+    align-items: center;
 }
 
 #tend div{
-    position: absolute;
-    left: 350px;
-    top: 230px;
     width: 600px;
+    max-width: 80%;
 }
 
 #tend div h1{
@@ -60,13 +58,11 @@ nav ul li a:active{
     color: var(--white);
 }
 
-
 #moviesSec div div img{
     margin: 5px;
     width: 175px;
     height: 250px;
 }
-
 
 .genre-container {
     margin-bottom: 20px;
@@ -103,4 +99,29 @@ nav ul li a:active{
 
 .second-letter {
     color: #cb6ce6; /* Replace with your desired color */
+}
+
+@media screen and (max-width: 1024px){
+    main{
+        width: 100%;
+        min-height: 100lvh;
+        margin-left: 0rem;
+    }
+
+    section{
+        width: calc(100% - 4rem);
+    }
+    
+    #tend div{
+        position: absolute;
+        top: 35%;
+        left: 10%;
+
+    }
+}
+
+@media screen and (max-width: 767px){
+    #tend div p{
+        display: none;
+    }
 }

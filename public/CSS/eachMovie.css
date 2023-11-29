@@ -1,13 +1,18 @@
+*{
+    color: var(--nav-text);
+}
+
 .movie-detail-container {
+    background-color: var(--primary); /* Dark background */
     display: flex;
-    background-color: #222; /* Dark background */
-    color: #fff; /* White text color */
-    padding: 20px;
+    gap: 1.5rem;
+    align-items: center;
 }
 
 .movie-poster {
-    width: 200px; /* Adjust as necessary */
+    width: 20rem; /* Adjust as necessary */
     margin-right: 20px;
+    box-shadow: -10px 10px 20px var(--secondary);
 }
 
 .movie-info {
@@ -16,11 +21,33 @@
 }
 
 .movie-title {
-    font-size: 2em;
+    font-size: 3em;
+    color: var(--white);
 }
 
-.movie-title::first-child::first-letter {
-    color: var(--secondary);
+.movie-fast-info{
+    width: 20rem;
+    padding: 1rem 0rem;
+    white-space: nowrap;
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.movie-rating{
+    height: 1.5rem;
+    display: flex;
+    gap: .3rem;
+}
+
+.rating-points{
+    align-self: center;
+}
+
+.star{
+    width: 1.2rem;
+    height: 1.2rem;
 }
 
 .movie-rating, .movie-duration, .movie-release-year, .movie-genres {
@@ -28,12 +55,60 @@
     margin-right: 10px;
 }
 
+.movie-genres{
+    padding-top: 1.1rem;
+}
+
 .movie-summary {
     font-size: 1em;
+    color: var(--white);
     margin-top: 10px;
+    padding: 1.6rem 0rem;
+    max-width: 75ch;
 }
 
 .movie-cast, .movie-director {
     font-size: 0.9em;
     margin-top: 5px;
+    padding: 1.6rem 0rem;
+    display: flex;
+    gap: 3rem;
+}
+
+.starring-people, .director-name{
+    color: var(--white);
+}
+
+.trailer{
+    width: calc(100% - 4rem);
+    height: calc(85lvh - 4rem);
+    padding: 2rem 2rem;
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: column;
+    align-items: center;
+}
+
+.trailer h1{
+    padding: 2rem 0rem;
+    color: var(--white);
+    font-size: 2.4rem;
+}
+
+.trailer #hole{
+    width: 60rem;
+    max-width: 90%;
+    height: 35rem;
+    box-shadow: inset -18px 18px 15px #1b1c1f,
+                inset 18px -18px 15px #252629;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.trailer #hole iframe{
+    width: 87%; 
+    height: 80%;
+    box-shadow: -18px 18px 15px #1b1c1f,
+                18px -18px 15px #252629;
 }
