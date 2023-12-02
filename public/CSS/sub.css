@@ -1,22 +1,22 @@
+/* Cor das letras na página toda e centralização na página */
 main{
     color: white;
     display: flex;
     justify-content: center;
-
-    
 }
-
+/* Cor do parágrafo e espaçamento do título. */
 p{
     color: var(--nav-text);
     margin-top:1.5em;
+    font-size: 1.2em;
 }
-
+/* Cor, tamanho e tipo de posição do título. */
 h1{
     color: #fff;
     font-size: 50px;
     position: relative;
 }
-
+/* Definir a linha em baixo do título. */
 h1::after{
     content:'';
     position: absolute;
@@ -27,37 +27,75 @@ h1::after{
     background-color: var(--white);
 }
 
-.spanSub{
+/* Estilizar letras com uma cor diferente do padrão definido, para criar mais destaque */
+span{
     color: #cb6ce6;
 }
 
+.price{
+    font-size: 20px;
+    margin-top: 8px;
+    margin-right: 15px;
+    color: var(--white);
+}
+.price-month{
+   font-size: 10px;
+   margin: 0;
+
+}
+
+.top_container h3{
+    font-size: 2em;
+}
+.top_container{
+    display: flex;
+    justify-content: space-between;
+   
+    
+}
+
+/* Definir os containeres como colunas e definir os limites de espaçamento. */
 .containers{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    gap: 20px;
     flex-wrap: wrap;
-    margin-top: 8%;
+    margin-top: 4%;
     width: 100%;
     min-height: 20rem;
-    background-color: red;
-    
+    gap: 2rem;
     
 }
 
+/* Estilização dos containers 'Standard' e 'Family' */
 .containers .card{
-    height: 5rem;
-    text-align: center;
-    padding: 130px 40px;
-    background-color: var(--secondary);
-    
-
+    height: calc(100% - 2rem);
+    padding: 1rem;
+    background-color: var(--primary);
+    box-shadow: 0 0 10px 2px var(--white);
 }
 
+/* Estilização do Container 'Premium-duo' (O do meio) */
+.unique {
+    height: calc(100% - 2rem);
+    padding: 1rem;
+    background-color: var(--primary);
+    box-shadow: 0 0 10px 2px var(--secondary);
+}
 
-/* @media screen and (max-width: 1493px){
-    .card:nth-child(4){
-        grid-column: 2;
-        
-    }
-} */
+.button {
+    box-shadow: 0 0 5px var(--secondary),
+    0 0 25px var(--secondary);
+    text-decoration: none;
+    background-color: var(--secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button:hover {
+    box-shadow: 0 0 5px var(--secondary),
+    0 0 25px var(--secondary), 0 0 50px var(--secondary),
+    0 0 100px var(--secondary), 0 0 200px var(--secondary);
+}
+
 

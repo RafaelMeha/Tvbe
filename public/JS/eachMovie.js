@@ -141,3 +141,53 @@ function displaySeriesDetails(data) {
 if (movieId) {
     fetchMovieDetails(movieId);
 }  
+
+// Funcao para salvar o estado da checkbox em um cookie
+function saveCheckboxState() {
+    // Obtem a referencia para a checkbox
+    var checkbox = document.getElementById('my-list-button');
+    
+    // Armazena o estado do checkbox em um cookie
+    document.cookie = 'checkboxState=' + checkbox.checked;
+}
+
+
+// Funcao para obter a data de expiracao para o cookie
+/*function getCookieExpiration(days) {
+    var date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    return date.toUTCString();
+}*/
+
+// Funcao executada ao carregar a pagina
+window.onload = function() {
+    // Obtem a referencia para a checkbox
+    var checkbox = document.getElementById('my-list-button');
+
+    // Obtem o valor do cookie 'checkboxState'
+    var checkboxState = getCookieValue('checkboxState');
+    
+    // Se o valor do cookie existir, define o estado da checkbox de acordo
+    if (checkboxState !== null) {
+        checkbox.checked = checkboxState === 'true';
+    }
+};
+
+// Funcao para obter o valor de um cookie pelo nome
+function getCookieValue(name) {
+    // Divide a string de cookies em pares chave-valor
+    var cookies = document.cookie.split('; ');
+    
+    // Itera sobre os cookies
+    for (var i = 0; i < cookies.length; i++) {
+        // Divide cada cookie em chave e valor
+        var cookie = cookies[i].split('=');
+
+        // Se a chave corresponder ao nome desejado, retorna o valor
+        if (cookie[0] === name) {
+            return cookie[1];
+        }
+    }
+    // Retorna null se o cookie nao for encontrado
+    return null;
+}

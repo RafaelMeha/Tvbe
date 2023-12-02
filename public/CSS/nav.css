@@ -181,3 +181,9 @@ ul li a:hover{
         width: 8rem;
     }
 }
+
+@media screen and (max-width: 475px){
+    #phone-menu{
+        width: calc(65% - 4rem);
+    }
+}

@@ -45,8 +45,8 @@ p{
 }
 
 .ceo{
-    min-height: 70lvh;
-    border: #cb6ce6 solid 1px;
+    border: 1px solid var(--secondary);
+    padding: 1rem 0rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -117,4 +117,15 @@ p{
     section{
         width: calc(100% - 4rem);
     }
-}   
+}
+
+@media screen and (max-width: 470px){
+    .CEOS{
+        grid-template-columns: 
+            repeat(auto-fill, minmax(80%, 1fr));
+    }
+
+    .ceo p{
+        font-size: 1rem;
+    }
+}

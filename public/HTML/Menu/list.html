@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../../CSS/root.css">
     <link rel="stylesheet" href="../../CSS/nav.css">
     <link rel="stylesheet" href="../../CSS/main.css">
-    <link rel="stylesheet" href="../../CSS/eachMovie.css">
+    <link rel="stylesheet" href="../../CSS/list.css">
 
     <!--Font Family-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,31 +74,11 @@
     </header>
     <main>
         <section>
-            <div class="movie-detail-container">
-                <img class="movie-poster" src="" alt="Movie Poster">
-                <div class="movie-info">
-                    <h1 class="movie-title"></h1>
-                    <div class="movie-fast-info">
-                        <span class="movie-release-year"></span>
-                        <div class="movie-rating"></div>
-                        <span class="movie-duration"></span>
-                        <input type="checkbox" class="my-list-button" id="my-list-button" onchange="saveCheckboxState()">    
-                    </div>
-                    <span class="movie-genres"></span>
-                    <p class="movie-summary"></p>
-                    <div class="movie-cast"></div>
-                    <div class="movie-director"></div>
-                </div>
-            </div>
-        </section>
-        <section class="trailer">
-            <h1>Trailer</h1>
-            <div id="hole">
-                <iframe id="movie-trailer" width="560" height="315" frameborder="0" allowfullscreen></iframe>
-            </div>
+            <h1>M<span class="span-list">y</span> List</h1>
+
+            <article class="list"></article>
         </section>
     </main>
-    <script src="../../JS/eachMovie.js"></script> <!-- Update this path -->
     <script src="../../JS/nav.js"></script>
 </body>
 </html>

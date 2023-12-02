@@ -9,7 +9,7 @@ section{
 
 #tend{
     background: url() center/cover no-repeat;
-    height: 40rem;
+    height: 70lvh;
     display: flex;
     align-items: center;
 }
@@ -82,7 +82,7 @@ nav ul li a:active{
     width: 160px; /* Adjust image width as needed */
     height: auto;
     flex: 0 0 auto; /* Do not grow or shrink */
-    cursor: grab;
+    cursor: pointer;
 }
 
 .movie-list img:hover{
@@ -111,12 +111,11 @@ nav ul li a:active{
     section{
         width: calc(100% - 4rem);
     }
-    
+
     #tend div{
         position: absolute;
         top: 35%;
         left: 10%;
-
     }
 }
 
