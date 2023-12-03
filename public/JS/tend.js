@@ -3,7 +3,7 @@ const API_KEY = "04c35731a5ee918f014970082a0088b1";
 // URLs
 const GENRE_API_URL = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`;
 const MOVIES_API_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=`;
-const   TOP_RATED_API_URL = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`;
+const   TOP_RATED_API_URL = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=48`;
 
 // Genre IDs
 const genreIds = {
@@ -17,14 +17,12 @@ const genreIds = {
     Mystery: 9648,
     Crime: 80,
     Animation: 16,
-    Family: 10751,
     Music: 10402,
     History: 36,
     Western: 37,
     TVMovie: 10770,
     Documentary: 99,
     Biography: 878,
-    Sport: 27,
     War: 10752,
 };
 

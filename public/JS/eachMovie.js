@@ -73,30 +73,62 @@ function displayMovieDetails(data) {
 }
 
 async function fetchSeriesDetails(seriesId) {
-    const url = `${BASE_URL}/movie/${seriesId}?api_key=${API_KEY}&append_to_response=credits,videos`;
+    const url = `${BASE_URL}/tv/${seriesId}?api_key=${API_KEY}&append_to_response=credits,videos`;
+    console.log('Fetching URL:', url); // Debugging: log the full URL
     try {
         const response = await fetch(url);
         const data = await response.json();
-        displayMovieDetails(data);
-        displayTrailer(data.videos.results); // Assumes that the videos are included in the response
+        if (response.ok) {
+            console.log('Response Data:', data);
+            console.log('Videos:', data.videos.results); // This will show you the video results
+            displaySeriesDetails(data);
+            displayTrailer(data.videos.results);
+        } else {
+            // ... existing error handling code ...
+        }
     } catch (error) {
-        console.error('Error fetching movie details:', error);
+        console.error('Error fetching series details:', error);
     }
 }
 
 function displayTrailer(videos) {
+    const trailerElement = document.getElementById('movie-trailer');
+    const holeElement = document.getElementById('hole'); // Get the container element for the trailer
+
+    if (!videos || videos.length === 0) {
+        console.error('No videos available for this series.');
+        if (trailerElement) {
+            trailerElement.style.display = 'none'; // Hide the trailer iframe
+        }
+        // Display the message directly in the 'hole' div
+        holeElement.innerHTML = '<p class="trailer-not-available">⚠️Trailer not available. <br> Sorry for the inconvenience!🥲</p>';
+        return;
+    }
+    
     const trailer = videos.find(video => video.type === 'Trailer' && video.site === 'YouTube');
+    
     if (trailer) {
         const trailerEmbedUrl = `https://www.youtube.com/embed/${trailer.key}`;
-        // Assuming you have an iframe with the id 'movie-trailer' in your HTML
-        document.getElementById('movie-trailer').src = trailerEmbedUrl;
+        trailerElement.src = trailerEmbedUrl;
+        trailerElement.style.display = 'block'; // Make sure the iframe is visible
+        // Ensure any existing not available message is cleared
+        holeElement.querySelector('.trailer-not-available')?.remove();
+    } else {
+        console.error('Trailer not found or iframe element missing');
+        if (trailerElement) {
+            trailerElement.style.display = 'none'; // Hide the trailer iframe
+        }
+        // Display the message directly in the 'hole' div
+        holeElement.innerHTML = '<p class="trailer-not-available">⚠️Trailer not available. <br> Sorry for the inconvenience!🥲</p>';
     }
 }
+
 
 function displaySeriesDetails(data) {
     document.querySelector('.movie-poster').src = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
     document.querySelector('.movie-poster').draggable = false;
-    document.querySelector('.movie-title').textContent = data.title;
+    document.querySelector('.movie-title').textContent = data.name;
+
 
     var ratingPoints = document.createElement('p');
     ratingPoints.textContent = `${data.vote_average.toFixed(1)}`;
@@ -109,8 +141,9 @@ function displaySeriesDetails(data) {
     ratingImg.className = 'star';
     document.querySelector('.movie-rating').appendChild(ratingImg);
     // document.querySelector('.movie-rating').textContent = `Rating: ${data.vote_average}`;
-    document.querySelector('.movie-duration').textContent = `${data.runtime} min`;
-    document.querySelector('.movie-release-year').textContent = `${new Date(data.release_date).getFullYear()}`;
+    const totalEpisodes = data.seasons.reduce((acc, season) => acc + season.episode_count, 0);
+    document.querySelector('.movie-duration').textContent = `${data.seasons.length} seasons, ${totalEpisodes} episodes`;
+    document.querySelector('.movie-release-year').textContent = `${new Date(data.first_air_date).getFullYear()}`;
     document.querySelector('.movie-genres').textContent = `${data.genres.map(genre => genre.name).join(', ')}`;
     document.querySelector('.movie-summary').textContent = data.overview;
     
@@ -135,12 +168,16 @@ function displaySeriesDetails(data) {
     document.querySelector('.movie-director').appendChild(directorName);
     ///document.querySelector('.movie-director').textContent = `Directed by: ${director ? director.name : 'N/A'}`;
 
-    document.title = `Tvbe - ${data.title}`;
+    document.title = `Tvbe - ${data.name}`;
 }
 
 if (movieId) {
     fetchMovieDetails(movieId);
 }  
+
+if(seriesId){
+    fetchSeriesDetails(seriesId);
+}
 
 // Funcao para salvar o estado da checkbox em um cookie
 function saveCheckboxState() {

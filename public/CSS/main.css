@@ -22,6 +22,7 @@ section{
 #tend div h1{
     font-size: 40px;
     color: var(--white);
+    text-shadow: 0 0 3px #cb6ce6, 0 0 5px #cb6ce6;
 }
 
 nav ul li a:active{
@@ -35,7 +36,9 @@ nav ul li a:active{
     background: transparent;
     border-radius: 5px;
     color: var(--white);
-    border: 1px solid #E4D9FF;
+    border: 1px solid #cb6ce6;
+    background-color: #202124ac;
+    backdrop-filter: blur(2px);
 }
 
 #tend div p{
@@ -44,7 +47,7 @@ nav ul li a:active{
     background-color: #202124ac;
     backdrop-filter: blur(2px);
     padding: 0.5rem;
-    border: #E4D9FF solid 1px;
+    border: #cb6ce6 solid 1px;
     border-radius: 2px;
 }
 
@@ -86,7 +89,8 @@ nav ul li a:active{
 }
 
 .movie-list img:hover{
-    border: #cb6ce6 solid 1px;
+    box-shadow: 0 0 2px var(--secondary),
+    0 0 10px var(--secondary);
 }
 
 .genre-title {
