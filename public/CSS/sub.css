@@ -27,7 +27,7 @@ h1::after{
     background-color: var(--white);
 }
 
-/* Estilizar letras com uma cor diferente do padrão definido, para criar mais destaque */
+/* Estilizar letras com uma cor diferente do padrão definido*/
 span{
     color: #cb6ce6;
 }
@@ -97,11 +97,9 @@ span{
 } */
 
 .button {
-    box-shadow: 0 5px 0 #834594;
     text-decoration: none;
-    background-color: #cb6ce6;
+    border: 1px solid var(--secondary);
     border-radius: 2px;
-    border: 0;
     margin: 1rem 0;
     padding: 1rem 1rem;
     white-space: nowrap;
@@ -110,19 +108,18 @@ span{
     align-items: center;
 }
 
-.button:active{
-    box-shadow: none;
-    transform: translateY(5px);
+.button:hover{
+    background-color: var(--secondary);
+}
+
+.button:active {
+    background-color: #a857bf;
+    border: 1px solid #a857bf;
 }
 
 .button:visited{
     color: var(--white);
 }
 
-@media (min-width: 1200px) { 
-{   display: flex;
-    flex-wrap: wrap;
-    justify-content:center;
 
-}
-}
+

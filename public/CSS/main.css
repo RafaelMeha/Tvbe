@@ -7,6 +7,8 @@ section{
     padding: 2rem;
 }
 
+
+
 #tend{
     background: url() center/cover no-repeat;
     height: 70lvh;
@@ -28,7 +30,7 @@ section{
 nav ul li a:active{
     color: var(--secondary);
 }
-
+/* 
 #tend div button{
     margin-top: 20px;
     margin-bottom: 15px;
@@ -39,6 +41,32 @@ nav ul li a:active{
     border: 1px solid #cb6ce6;
     background-color: #202124ac;
     backdrop-filter: blur(2px);
+} */
+
+.button {
+    text-decoration: none;
+    border: 1px solid var(--secondary);
+    border-radius: 2px;
+    margin: 1rem 0;
+    padding: 1rem 1rem;
+    white-space: nowrap;
+    background-color: #202124ac;
+    backdrop-filter: blur(2px);
+    color: var(--white);
+
+}
+
+.button:hover{
+    background-color: var(--secondary);
+}
+
+.button:active {
+    background-color: #a857bf;
+    border: 1px solid #a857bf;
+}
+
+.button:visited{
+    color: var(--white);
 }
 
 #tend div p{
