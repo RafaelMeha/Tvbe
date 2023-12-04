@@ -1,7 +1,16 @@
+html{
+    height: 100%;
+}
+
+body{
+    min-height: 100lvh;
+}
+
 /* Cor das letras na página toda e centralização na página */
 main{
     color: white;
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 /* Cor do parágrafo e espaçamento do título. */
@@ -121,5 +130,26 @@ span{
     color: var(--white);
 }
 
+footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    margin-top: auto;
+    background-color: red
+}
 
+footer a{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
 
+@media (max-width: 600px) {
+    .footer-home, .footer-sub, .footer-contact, .footer-follow {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
