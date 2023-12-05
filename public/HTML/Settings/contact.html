@@ -78,12 +78,14 @@
         <section>
             <h1>C<span class="span">o</span>ntact us</h1>
             
-            <form action="https://formsubmit.co/diogomariasantos3@gmail.com" method="POST" id="myForm">
+            <form action="https://formspree.io/f/xoqogagr" method="POST" id="myForm">
                 <input type="text" name="nome" id="first_name" placeholder="FIRST NAME*" oninput="validarLetras(this)" required>
                 <input type="text" name="sobrenome" id="last_name" placeholder="LAST NAME*" oninput="validarLetras(this)" required>
     
                 <input type="email" name="email" id="email" placeholder="EMAIL*" required>
-                <input type="text" name="phone" id="phone" placeholder="PHONE" maxlength="9" oninput="validarNumero(this)">
+                <!-- <input type="text" name="phone" id="phone" placeholder="PHONE" maxlength="9" oninput="validarNumero(this)"> -->
+                <input list="countries" name="country" placeholder="Country">
+                <datalist id="countries"></datalist>
     
                 <input type="text" name="subject" id="subject" placeholder="SUBJECT*" autocomplete="off" required>
                 <textarea name="mensagem" id="message" placeholder="MESSAGE*" autocomplete="off" required></textarea>
@@ -108,8 +110,8 @@
                       <span>Send</span>
                 </button>
     
-                <input type="hidden" name="_next" value="http://127.0.0.1:5500/public/index.html">
-                <input type="hidden" name="_captcha" value="false">
+                <!-- <input type="hidden" name="_next" value="http://127.0.0.1:5500/public/index.html">
+                <input type="hidden" name="_captcha" value="false"> -->
             </form>
         </section>
     </main>

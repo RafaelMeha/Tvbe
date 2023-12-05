@@ -54,12 +54,22 @@ form input {
     border-radius: 10px;
 }
 
-form input:nth-child(5){
+form input:nth-child(6){
     grid-column: span 4;
 }
 
 form input::placeholder{
     color: var(--nav-text);
+}
+
+form datalist{
+    grid-column: span 2;
+    padding: 0px 1rem;
+    color: var(--text);
+    font-size: 14px;
+    background-color: var(--primary);
+    border: 2px solid var(--secondary);
+    border-radius: 10px;
 }
 
 form textarea{
