@@ -78,7 +78,7 @@
         <section>
             <h1>C<span class="span">o</span>ntact us</h1>
             
-            <form action="https://formsubmit.co/diogomariasantos3@gmail.com" method="POST">
+            <form action="https://formsubmit.co/diogomariasantos3@gmail.com" method="POST" id="myForm">
                 <input type="text" name="nome" id="first_name" placeholder="FIRST NAME*" oninput="validarLetras(this)" required>
                 <input type="text" name="sobrenome" id="last_name" placeholder="LAST NAME*" oninput="validarLetras(this)" required>
     
@@ -88,7 +88,25 @@
                 <input type="text" name="subject" id="subject" placeholder="SUBJECT*" autocomplete="off" required>
                 <textarea name="mensagem" id="message" placeholder="MESSAGE*" autocomplete="off" required></textarea>
     
-                <button type="submit" id="send_it">SEND IT</button>
+                <button type="submit" id="send">
+                    <div class="svg-wrapper-1">
+                        <div class="svg-wrapper">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            width="24"
+                            height="24"
+                          >
+                            <path fill="none" d="M0 0h24v24H0z"></path>
+                            <path
+                              fill="currentColor"
+                              d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                            ></path>
+                          </svg>
+                        </div>
+                      </div>
+                      <span>Send</span>
+                </button>
     
                 <input type="hidden" name="_next" value="http://127.0.0.1:5500/public/index.html">
                 <input type="hidden" name="_captcha" value="false">

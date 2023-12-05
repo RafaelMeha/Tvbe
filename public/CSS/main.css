@@ -53,6 +53,7 @@ nav ul li a:active{
     background-color: #202124ac;
     backdrop-filter: blur(2px);
     color: var(--white);
+    cursor: pointer;
 
 }
 

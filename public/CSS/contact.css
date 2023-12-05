@@ -68,7 +68,6 @@ form textarea{
     padding: 1rem;
     color: var(--nav-text);
     font-size: 14px;
-    font-family: Arial, Helvetica, sans-serif;
     outline: none;
     background-color: var(--primary);
     border: 2px solid var(--secondary);
@@ -81,24 +80,74 @@ form textarea::placeholder {
     font-size: 14px;
 }
 
-#send_it {
-    font-size: 1.2em;
+#send {
+    font-size: 20px;
     color: var(--nav-text);
-    background-color: var(--primary);
+    background: transparent;
     border: 2px solid var(--secondary);
     border-radius: 10px;
-    box-shadow: 0px 5px 0px #820cc2;
-    outline: none;
+    overflow: hidden;
+    transition: all 0.2s;
     cursor: pointer;
+    display: flex;
+    gap: .3rem;
+    align-items: center;
+    justify-content: center;
+}
+  
+#send span {
+    transition: all 0.3s ease-in-out;
+}
+  
+#send svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
 }
 
-#send_it:active{
-    box-shadow: none;
-    transform: translateY(5px);
+#send:hover{
+    background-color: var(--secondary);
+}
+  
+#send:hover .svg-wrapper {
+    animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+  
+#send:hover svg {
+    transform: translateX(1.2rem) rotate(45deg) scale(1.1);
+}
+  
+#send:hover span {
+    transform: translateX(10rem);
+}
+  
+#send:active {
+    transform: scale(0.95);
+}
+  
+@keyframes fly-1 {
+    from {
+        transform: translateY(0.1rem);
+    }
+    to {
+        transform: translateY(-0.1rem);
+    }
 }
 
 @media screen and (max-width: 500px){
     #send_it{
         grid-column: span 2;
     }
+}
+
+.error{
+    border: 2px solid red;
+}
+
+.error:nth-child(4){
+    border: 2px solid var(--secondary);
+}
+
+.filled{
+    border: 2px solid var(--secondary);
 }
