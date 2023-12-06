@@ -3,7 +3,7 @@ html{
 }
 
 body{
-    min-height: 100lvh;
+    min-height: 100vh;
 }
 
 /* Cor das letras na página toda e centralização na página */
@@ -101,49 +101,30 @@ span{
     box-shadow: 0 0 10px 2px var(--secondary);
 }
 
-/* .containers .card:active{
-    box-shadow: 0 0 10px 2px var(--white);
-} */
 
-.button {
+.button-card {
     text-decoration: none;
-    border: 1px solid var(--secondary);
+    border: 1px solid var(--white);
     border-radius: 2px;
     margin: 1rem 0;
     padding: 1rem 1rem;
     white-space: nowrap;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center;    
 }
 
-.button:hover{
+.button-card:hover{
     background-color: var(--secondary);
+    border: 1px solid var(--secondary);
+    box-shadow: 0 0 2px 1px var(--secondary);
 }
 
-.button:active {
+.button-card:active {
     background-color: #a857bf;
     border: 1px solid #a857bf;
 }
 
-.button:visited{
+.button-card:visited{
     color: var(--white);
-}
-
-footer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    margin-top: auto;
-    background-color: red
-}
-
-
-@media (max-width: 600px) {
-    .footer-home, .footer-sub, .footer-contact, .footer-follow {
-        width: 100%;
-        margin-bottom: 20px;
-    }
 }
