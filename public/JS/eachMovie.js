@@ -3,7 +3,7 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 
 const params = new URLSearchParams(window.location.search);
 const movieId = params.get('movieId');
-const seriesId = params.get('seriesId');
+const seriesId = params.get('seriesId');    
 
 async function fetchMovieDetails(movieId) {
     const url = `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}&append_to_response=credits,videos`;
