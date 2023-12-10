@@ -19,13 +19,18 @@ main{
 }
 
 
-p{
+.sec-text-big{
     color: #ccc;
     font-size: 25px;
     padding: 1rem 0rem;main{
     width: calc(100% - 19rem);
     margin-left: 19rem;
 }
+}
+
+p{
+    color: #ccc;
+    font-size: 25px;
 }
 
 .spanCEO{

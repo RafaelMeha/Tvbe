@@ -1,10 +1,18 @@
 .footer-con{
       margin: auto;
-      background-color: darkgray;
+      background-color: #35363a;
       width:100%;
       margin-top: 15rem;      
+      display: flex;
+      justify-content: center;
+      color: white;
+
   }
-  
+.copyright{
+    color: white;
+    font-size: 18px;
+    margin-top:1.5em;
+}
   /* Colocar todos os elementos do footer em linha */
   .row{
       display: flex;
@@ -15,33 +23,43 @@
   ul{
       list-style: none;
   }
-  
-  .footer{
-      padding: 70px 0;
-      background-color: #24262b;
-      
+
+  .footer-menu{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 0;
+    
+
+  }
+
+  .footer-col ul{
+    width: 15rem;
   }
   
   /* Espaçamento entre colunas */
   .footer-col{
-      width: 20%;
-      padding: 0 15px;
+      padding: 5px 80px;
+      margin-top: 30px;
+      margin-bottom: 20px;
+      
+      
   }
   
   /* Formatação dos titulos e espaçamento dos titulos na vertical */
-  .footer-col h4{
-      font-size: 18px;
+  .footer-col .footer-title{
+     font-size: 18px;
      text-transform: capitalize;
      margin-bottom: 30px;
      position: relative;
   }
+
   /* Linha por baixo do titulo */
-  .footer-col h4:before{
+  .footer-col .footer-title:before{
      content:'';
      position: absolute;
      left: 0;
      bottom: -10px;
-     background-color: purple;
+     background-color: var(--secondary);
      height: 2px;
      box-sizing: border-box;
      width: 50px;
@@ -57,31 +75,35 @@
       text-decoration: none;
       display: block;
       transition: all 0.3s ease;
+      line-height: 8px;
   
   }
-  
+
+/* Efeito hover com cor e com efeito quando passamos por cima dos links */
   .footer-col ul li a:hover{
-      color: purple;
+      color: var(--secondary);
       padding-left: 8px;
   }
   
+  /* Ajuste dos icons das redes sociais, tamanhos, efeitos e cor */
   .footer-col .social-links a{
       display: inline-block;
       height: 40px;
       width: 40px;
       background-color: rgba(255, 255, 255, 0.2);
+      color: var(--secondary);
       margin: 0 8px 8px 0;
       text-align: center;
       line-height: 40px;
       transition: all 0.5s ease;
   }
-  
+/* Efeito hover nos icons */
   .footer-col .social-links a:hover{
       color: #24262b;
       background-color: #ffffff;
   }
   
-  /* Responsive */
+  /* Modo Responsivo */
   
   @media(max-width: 767px){
     .footer-con{
@@ -101,4 +123,4 @@
           width: 100%;
       }
       
-  }
+}

@@ -18,7 +18,7 @@ h1::after{
     background-color: var(--white);
 }
 
-p{
+.sec-text-big{
     color: #ccc;
     font-size: 20px;
     margin: 15px;

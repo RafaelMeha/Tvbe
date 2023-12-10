@@ -163,6 +163,11 @@ select{
     width: 100%;
 }
 
+.movie:hover{
+    box-shadow: 0 0 2px var(--secondary),
+    0 0 10px var(--secondary);
+}
+
 .movie-info {
     color: #eee;
     display: flex;

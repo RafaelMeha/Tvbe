@@ -14,7 +14,7 @@ main{
     justify-content: center;
 }
 /* Cor do parágrafo e espaçamento do título. */
-p{
+.sec-text-big{
     color: var(--nav-text);
     margin-top:1.5em;
     font-size: 1.2em;

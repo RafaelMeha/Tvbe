@@ -16,11 +16,10 @@ h1::after{
     background-color: var(--white);
 }
 
-p{
+.sec-text{
     color: #ccc;
     font-size: 25px;
 }
-
 
 .faq-content {
   margin: 0 auto;
