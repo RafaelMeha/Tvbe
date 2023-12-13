@@ -7,24 +7,21 @@
     <title>TvBE Streaming</title>
     <link rel="shortcut icon" href="ASSETS/logo/favicon-ri.ico" type="image/x-icon">
 
+    <!-- Style -->
     <link rel="stylesheet" href="CSS/main.css">
     <link rel="stylesheet" href="CSS/root.css">
     <link rel="stylesheet" href="CSS/nav.css">
     <link rel="stylesheet" href="../../CSS/footer.css">
+    <link rel="stylesheet" href="CSS/load.css">
 
     <!--Font Family-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <script type="module">
-        // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    
         const firebaseConfig = {
           apiKey: "AIzaSyBhuNvmp_RQ1KPZW7LQEJlNSvpP8NmeJVg",
           authDomain: "tvbe-d6c8d.firebaseapp.com",
@@ -41,6 +38,15 @@
       </script>
 </head>
 <body>
+    <div id="loading-screen">
+        <div class="loader triangle">
+            <svg viewBox="0 0 86 80">
+                <polygon points="43 8 79 72 7 72"></polygon>
+            </svg>
+        </div>
+        <h1 id="logo-loader">T<span class="spanSub">v</span>be</h1>
+    </div>
+
     <header>
         <a href="index.html"><img src="ASSETS/logo/image_2023-11-21_145906080-removebg-preview.png" alt="Logo" id="logo" draggable="false"></a>
         <!-- Nav bar Menu -->
@@ -107,11 +113,13 @@
             </div>
         </section>
         <section id="moviesSec">
-                
         </section>              
     </main>
     <footer></footer>
+
+    <!-- Script -->
     <script src="JS/tend.js"></script>
     <script src="JS/nav.js"></script>
+    <script src="JS/load.js"></script>
 </body>
 </html>   
