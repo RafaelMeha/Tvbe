@@ -2,7 +2,7 @@
 
 Welcome to the Tvbe repository. This site offers a wide selection of movies, with a modern user interface and a focus on user experience.
 
-![image](readImg.png)
+![image](readmeImg.png)
 
 ## Features
 
