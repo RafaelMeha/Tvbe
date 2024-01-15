@@ -6,9 +6,11 @@
     <title>Login</title>
 
     <!-- Firebase SDK script tags with non-ESM syntax -->
-    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js"></script> <!-- Add this line -->
+<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js"></script>
+
 </head>
 <body>
     <form id="loginForm">
@@ -34,46 +36,41 @@
           appId: "1:184093314881:web:4ade02a8c8fa9c0e7f5bc0",
           measurementId: "G-PBWKRKHV66"
         };
+        if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  } else {
+    firebase.app(); // if already initialized, use that one
+  }
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
 
-        const db = firebase.firestore();
+  document.getElementById('loginForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
 
-        document.getElementById('loginForm').addEventListener('submit', async function(event) {
-          event.preventDefault();
-          var email = document.getElementById('email').value;
-          var password = document.getElementById('password').value;
+    try {
+      const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+      const user = userCredential.user;
 
-          // Create user in Firebase Authentication
-          try {
-            const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
-            const user = userCredential.user;
+      await db.collection('users').doc(user.uid).set({
+        email: user.email,
+        uid: user.uid
+      });
 
-            // Add user to Firestore 'users' collection
-            await db.collection('users').add({
-              uid: user.uid,
-              email: user.email,
-              // Add other user properties as needed
-            });
+      console.log('User created and added to Firestore:', user);
+    } catch (error) {
+      console.error('Error creating user:', error.code, error.message);
+    }
+  });
 
-            console.log('User created and added to Firestore:', user);
-
-          } catch (error) {
-            // Handle errors
-            console.error('Error creating user:', error.message);
-          }
-        });
-
-        function logout() {
-          firebase.auth().signOut().then(function() {
-            // Sign-out successful.
-            console.log('Logout successful');
-          }).catch(function(error) {
-            // An error happened.
-            console.error('Logout error:', error.message);
-          });
-        }
+  function logout() {
+    firebase.auth().signOut().then(function() {
+      console.log('Logout successful');
+    }).catch(function(error) {
+      console.error('Logout error:', error.code, error.message);
+    });
+  }
     </script>
   </body>
 </html>
