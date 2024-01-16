@@ -18,6 +18,34 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
+    
+        const firebaseConfig = {
+            apiKey: "AIzaSyBH42VD0gk48KLx74gWNU9u-Kz9z751q8A",
+            authDomain: "tvbe-24768.firebaseapp.com",
+            projectId: "tvbe-24768",
+            storageBucket: "tvbe-24768.appspot.com",
+            messagingSenderId: "459135185545",
+            appId: "1:459135185545:web:30a8f0aa37f56902824c58",
+            measurementId: "G-MK82D5BEGM"
+        };
+      
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        firebase.initializeApp(firebaseConfig);
+
+        firebase.auth().onAuthStateChanged(user => {
+            if (!user) {
+                window.location.href = 'http://127.0.0.1:5500/public/login.html';
+            }
+        });
+      </script>
 </head>
 <body>
 
