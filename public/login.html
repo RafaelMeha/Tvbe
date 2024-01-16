@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 
+    <link rel="shortcut icon" href="ASSETS/logo/favicon-ri.ico" type="image/x-icon">
+
     <link rel="stylesheet" href="CSS/login.css">
 </head>
 <body>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
             <form id="sign-up-form">
-                <h1>Create Account</h1>
+                <h1 class="bigTitle">Create Account</h1>
                 <input type="text" id="username" placeholder="Username" required>
                 <input type="email" id="email-signup" placeholder="Email" required>
                 <input type="password" id="password-signup" placeholder="Password" required>
@@ -21,7 +23,7 @@
         </div>
         <div class="form-container sign-in-container">
             <form id="login-form">
-                <h1>Sign in</h1>
+                <h1 class="bigTitle">Sign in</h1>
                 <input type="email" id="email-login" placeholder="Email">
                 <input type="password" id="password-login" placeholder="Password">
                 <button type="submit">Sign In</button>
@@ -30,13 +32,13 @@
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
-                    <h1>Welcome Back!</h1>
+                    <h1>You've an account already?</h1>
                     <p>To keep connected with us please login with your personal info</p>
                     <button class="ghost" id="signIn">Sign In</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <h1>Hello, Friend!</h1>
-                    <p>Enter your personal details and start journey with us</p>
+                    <h1>Hello! Start your experience here.</h1>
+                    <p>Create an account and start watching with us!</p>
                     <button class="ghost" id="signUp">Sign Up</button>
                 </div>
             </div>
