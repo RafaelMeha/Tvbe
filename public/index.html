@@ -35,15 +35,11 @@
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
 
-
         firebase.initializeApp(firebaseConfig);
 
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                document.getElementById('user-info').textContent = "User logged in: " + user.email;
-            } else {
-                document.getElementById('user-info').textContent = "";
-                window.location.href = 'http://127.0.0.1:5500/public/login.html'; 
+        firebase.auth().onAuthStateChanged(user => {
+            if (!user) {
+                window.location.href = 'http://127.0.0.1:5500/public/login.html';
             }
         });
       </script>
@@ -133,7 +129,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
     <script>
-      
+        
     </script>
     <script src="JS/tend.js"></script>
     <script src="JS/nav.js"></script>
