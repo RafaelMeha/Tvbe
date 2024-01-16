@@ -25,7 +25,7 @@ async function getMovies(page) {
     
     const resp = await fetch(url);
     const respData = await resp.json();
-    totalPages = respData.total_pages; // Update total pages based on response
+    totalPages = respData.total_pages; 
 
     console.log(respData);
 
@@ -34,17 +34,15 @@ async function getMovies(page) {
 }
 
 function showMovies(movies) {
-    // clear main
     main.innerHTML = "";
 
     movies.forEach((movie) => {
         const { id, poster_path, title, vote_average } = movie;
 
         const movieLink = document.createElement("a");
-        movieLink.href = `eachMoviee.html?movieId=${id}`; // URL for movie details
+        movieLink.href = `eachMoviee.html?movieId=${id}`; 
         movieLink.classList.add("movie");
 
-        // Format the vote_average to one decimal place
         const formattedVoteAverage = parseFloat(vote_average).toFixed(1);
 
         movieLink.innerHTML = `
@@ -79,7 +77,7 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
 
     currentSearchTerm = search.value;
-    currentPage = 1; // Reset to first page for new search
+    currentPage = 1;
 
     if (currentSearchTerm) {
         getMovies(currentPage);
@@ -91,23 +89,19 @@ form.addEventListener("submit", (e) => {
 async function applyFilters(page) {
     let url = `${API_BASE_URL}?api_key=${API_KEY}&page=${page}`;
 
-    // Check for a search term and apply it if present
     if (currentSearchTerm) {
         url = `${SEARCHAPI}${currentSearchTerm}&page=${page}`;
     } else {
-        // Apply genre filter if selected
         const genre = document.querySelector('[name="genre"]').value;
-        if (genre && genre !== 'a') { // Assuming 'a' is the value for "Select Genre"
+        if (genre && genre !== 'a') { 
             url += `&with_genres=${genre}`;
         }
 
-        // Apply year filter if selected
         const year = document.querySelector('[name="year"]').value;
-        if (year && year !== 'a') { // Assuming 'a' is the value for "Select Year"
+        if (year && year !== 'a') { 
             url += `&primary_release_year=${year}`;
         }
 
-        // Note: The TMDb API does not have a rating filter, so we will filter by vote_average after fetching the results.
     }
     
     try {
@@ -116,9 +110,8 @@ async function applyFilters(page) {
         totalPages = respData.total_pages;
 
         let filteredResults = respData.results;
-        // Apply rating filter after fetching the results
         const rating = document.querySelector('[name="rating"]').value;
-        if (rating && rating !== 'a') { // Assuming 'a' is the value for "Select Rating"
+        if (rating && rating !== 'a') { 
             filteredResults = filteredResults.filter(movie => Math.round(movie.vote_average) >= parseInt(rating));
         }
 
@@ -129,14 +122,12 @@ async function applyFilters(page) {
     }
 }
 
-// Update the form event listener to handle submissions with only one filter
 document.getElementById('filters-form').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    // Clear the search term if the filters form is submitted
     currentSearchTerm = '';
-    currentPage = 1; // Reset to the first page for new filters
-    applyFilters(currentPage); // Apply filters and fetch movies
+    currentPage = 1; 
+    applyFilters(currentPage); 
 });
 
 
@@ -149,7 +140,7 @@ document.getElementById("nextButton").addEventListener("click", () => {
     if (currentPage < totalPages) {
         currentPage += 1;
         getMovies(currentPage);
-        window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to the top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 });
 
