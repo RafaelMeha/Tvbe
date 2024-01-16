@@ -4,27 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+
+    <link rel="stylesheet" href="CSS/login.css">
 </head>
 <body>
-    <form id="login-form">
-        <input type="email" id="email-login" placeholder="Email">
-        <input type="password" id="password-login" placeholder="Password">
-        <button type="submit">Login</button>
-    </form>
-
-    <form id="sign-up-form">
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="email" id="email-signup" placeholder="Email" required>
-        <input type="password" id="password-signup" placeholder="Password" required>
-        <input type="password" id="confirm-password" placeholder="Confirm Password" required>
-        <button type="submit">Sign Up</button>
-    </form>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form id="sign-up-form">
+                <h1>Create Account</h1>
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="email" id="email-signup" placeholder="Email" required>
+                <input type="password" id="password-signup" placeholder="Password" required>
+                <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form id="login-form">
+                <h1>Sign in</h1>
+                <input type="email" id="email-login" placeholder="Email">
+                <input type="password" id="password-login" placeholder="Password">
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
     <script>
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+        });
+
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+        });
        const firebaseConfig = {
             apiKey: "AIzaSyBH42VD0gk48KLx74gWNU9u-Kz9z751q8A",
             authDomain: "tvbe-24768.firebaseapp.com",
