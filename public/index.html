@@ -23,18 +23,29 @@
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
     
         const firebaseConfig = {
-          apiKey: "AIzaSyBhuNvmp_RQ1KPZW7LQEJlNSvpP8NmeJVg",
-          authDomain: "tvbe-d6c8d.firebaseapp.com",
-          projectId: "tvbe-d6c8d",
-          storageBucket: "tvbe-d6c8d.appspot.com",
-          messagingSenderId: "184093314881",
-          appId: "1:184093314881:web:4ade02a8c8fa9c0e7f5bc0",
-          measurementId: "G-PBWKRKHV66"
+            apiKey: "AIzaSyBH42VD0gk48KLx74gWNU9u-Kz9z751q8A",
+            authDomain: "tvbe-24768.firebaseapp.com",
+            projectId: "tvbe-24768",
+            storageBucket: "tvbe-24768.appspot.com",
+            messagingSenderId: "459135185545",
+            appId: "1:459135185545:web:30a8f0aa37f56902824c58",
+            measurementId: "G-MK82D5BEGM"
         };
       
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
+
+
+        firebase.initializeApp(firebaseConfig);
+
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                document.getElementById('user-info').textContent = "User logged in: " + user.email;
+            } else {
+                document.getElementById('user-info').textContent = "";
+                window.location.href = 'http://127.0.0.1:5500/public/login.html'; 
+            }
+        });
       </script>
 </head>
 <body>
@@ -68,6 +79,7 @@
                 <li><a href="HTML/Settings/terms.html"><img src="ASSETS/nav-icons/terms.png" alt="Terms of Use" width="18rem">Terms of Use</a></li>
                 <li><a href="HTML/Settings/privacy.html"><img src="ASSETS/nav-icons/privacy.png" alt="Privacy" width="18rem">Privacy</a></li>
                 <li><a href="HTML/Settings/contact.html"><img src="ASSETS/nav-icons/contact.png" alt="Contact us" width="18rem">Contact us</a></li>
+                <li><a href="HTML/Settings/user.html"><img src="ASSETS/nav-icons/user.png" alt="Account" width="18rem">Account</a></li>
             </ul>
         </nav>
         <li id="ceos">
@@ -75,7 +87,7 @@
         </li>
 
         <input type="checkbox" id="menu-phone-button">
-        <div id="phone-menu">
+        <div id="phone-menu">   
             <nav>
                 <!-- Menu Section -->
                 <h3>Menu</h3>
@@ -94,7 +106,9 @@
                     <li><a href="HTML/Settings/terms.html"><img src="ASSETS/nav-icons/terms.png" alt="Terms of Use" width="18rem">Terms of Use</a></li>
                     <li><a href="HTML/Settings/privacy.html"><img src="ASSETS/nav-icons/privacy.png" alt="Privacy" width="18rem">Privacy</a></li>
                     <li><a href="HTML/Settings/contact.html"><img src="ASSETS/nav-icons/contact.png" alt="Contact us" width="18rem">Contact us</a></li>
+                    <li><a href="HTML/Settings/user.html"><img src="ASSETS/nav-icons/user.png" alt="Account" width="18rem">Account</a></li>
                 </ul>
+                <p id="user-info"></p>  
             </nav>
             <li id="ceos">
                 <a href="HTML/ceo.html" ><img src="ASSETS/nav-icons/CEOS.png" alt="CEOS" width="18rem">CEOS</a>
@@ -116,7 +130,11 @@
     </main>
     <footer></footer>
 
-    <!-- Script -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+    <script>
+      
+    </script>
     <script src="JS/tend.js"></script>
     <script src="JS/nav.js"></script>
     <script src="JS/load.js"></script>
