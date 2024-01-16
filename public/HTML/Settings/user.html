@@ -18,6 +18,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+    
 </head>
 <body>
 
@@ -109,12 +111,9 @@
             });
         });
 
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                document.getElementById('user-info').textContent = "User logged in: " + user.email;
-            } else {
-                document.getElementById('user-info').textContent = "";
-                window.location.href = 'http://127.0.0.1:5500/public/login.html'; 
+        firebase.auth().onAuthStateChanged(user => {
+            if (!user) {
+                window.location.href = 'http://127.0.0.1:5500/public/login.html';
             }
         });
     </script>
