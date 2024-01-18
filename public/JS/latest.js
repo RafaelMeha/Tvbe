@@ -17,7 +17,7 @@ getMovies(currentPage);
 
 async function getMovies(page) {
     let url;
-    const yearFilter = "&primary_release_date.gte=2023-01-01&primary_release_date.lte=2024-12-31"; // Filter for 2023 and 2024
+    const yearFilter = "&primary_release_date.gte=2023-01-01&primary_release_date.lte=2024-12-31"; 
     if (currentSearchTerm) {
         url = `${SEARCHAPI}${currentSearchTerm}&page=${page}${yearFilter}`;
     } else {
@@ -26,7 +26,7 @@ async function getMovies(page) {
     
     const resp = await fetch(url);
     const respData = await resp.json();
-    totalPages = respData.total_pages; // Update total pages based on response
+    totalPages = respData.total_pages; 
 
     console.log(respData);
 
@@ -35,17 +35,15 @@ async function getMovies(page) {
 }
 
 function showMovies(movies) {
-    // clear main
     main.innerHTML = "";
 
     movies.forEach((movie) => {
         const { id, poster_path, title, vote_average } = movie;
 
         const movieLink = document.createElement("a");
-        movieLink.href = `eachMoviee.html?movieId=${id}`; // URL for movie details
+        movieLink.href = `eachMoviee.html?movieId=${id}`; 
         movieLink.classList.add("movie");
 
-        // Format the vote_average to one decimal place
         const formattedVoteAverage = parseFloat(vote_average).toFixed(1);
 
         movieLink.innerHTML = `
@@ -92,23 +90,18 @@ form.addEventListener("submit", (e) => {
 async function applyFilters(page) {
     let url = `${API_BASE_URL}?api_key=${API_KEY}&page=${page}`;
 
-    // Check for a search term and apply it if present
     if (currentSearchTerm) {
         url = `${SEARCHAPI}${currentSearchTerm}&page=${page}`;
     } else {
-        // Apply genre filter if selected
         const genre = document.querySelector('[name="genre"]').value;
-        if (genre && genre !== 'a') { // Assuming 'a' is the value for "Select Genre"
+        if (genre && genre !== 'a') { 
             url += `&with_genres=${genre}`;
         }
 
-        // Apply year filter if selected
         const year = document.querySelector('[name="year"]').value;
-        if (year && year !== 'a') { // Assuming 'a' is the value for "Select Year"
+        if (year && year !== 'a') { 
             url += `&primary_release_year=${year}`;
         }
-
-        // Note: The TMDb API does not have a rating filter, so we will filter by vote_average after fetching the results.
     }
     
     try {

@@ -21,10 +21,6 @@ document.getElementById('send').addEventListener('click', () => {
             elements[i].classList.add('filled');
         }
     }
-
-    // if (hasEmptyField) {
-    //     alert("Please enter all mandatory data!");
-    // }
 });
 
 function loadCountries() {
