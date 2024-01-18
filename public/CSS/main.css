@@ -28,25 +28,13 @@ section{
 nav ul li a:active{
     color: var(--secondary);
 }
-/* 
-#tend div button{
-    margin-top: 20px;
-    margin-bottom: 15px;
-    padding: 0.5rem;
-    background: transparent;
-    border-radius: 5px;
-    color: var(--white);
-    border: 1px solid #cb6ce6;
-    background-color: #202124ac;
-    backdrop-filter: blur(2px);
-} */
 
 .button {
     text-decoration: none;
     border: 1px solid var(--secondary);
     border-radius: 2px;
     margin: 1rem 0;
-    padding: 1rem 1rem;
+    padding: 0.6rem 0.6rem;
     white-space: nowrap;
     background-color: #202124ac;
     backdrop-filter: blur(2px);
@@ -101,17 +89,17 @@ nav ul li a:active{
 .movie-list {
     display: flex;
     overflow-x: auto;
-    gap: 10px; /* Adjust the space between movie images */
+    gap: 10px; 
 }
 
 .movie-list::-webkit-scrollbar {
-    display: none; /* This hides the scrollbar in Webkit browsers */
+    display: none; 
 }
 
 .movie-list img {
-    width: 160px; /* Adjust image width as needed */
+    width: 160px; 
     height: auto;
-    flex: 0 0 auto; /* Do not grow or shrink */
+    flex: 0 0 auto;
     cursor: pointer;
 }
 
@@ -121,15 +109,14 @@ nav ul li a:active{
 }
 
 .genre-title {
-    font-size: 24px; /* Example: Set the font size */
-    color: #ffffff; /* Example: Set the text color */
-    margin-bottom: 10px; /* Example: Set the space below the title */
-    /* Add other styles as needed */
+    font-size: 24px; 
+    color: #ffffff;
+    margin-bottom: 10px;
 }
 
 
 .second-letter {
-    color: #cb6ce6; /* Replace with your desired color */
+    color: #cb6ce6;
 }
 
 @media screen and (max-width: 1024px){

@@ -3,14 +3,14 @@
 }
 
 .movie-detail-container {
-    background-color: var(--primary); /* Dark background */
+    background-color: var(--primary);
     display: flex;
     gap: 1.5rem;
     align-items: center;
 }
 
 .movie-poster {
-    width: 20rem; /* Adjust as necessary */
+    width: 20rem; 
     margin-right: 20px;
     box-shadow: -10px 10px 20px var(--secondary);
 }
