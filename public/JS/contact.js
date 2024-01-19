@@ -20,7 +20,7 @@ document.getElementById('send').addEventListener('click', () => {
         }else{
             elements[i].classList.add('filled');
         }
-    }
+    }   
 });
 
 function loadCountries() {
