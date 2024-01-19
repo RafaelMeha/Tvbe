@@ -3,7 +3,7 @@ const API_KEY = "04c35731a5ee918f014970082a0088b1";
 // URLs
 const GENRE_API_URL = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`;
 const MOVIES_API_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=`;
-const   TOP_RATED_API_URL = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=48`;
+const   TOP_RATED_API_URL = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`;
 
 // Genre IDs
 const genreIds = {
@@ -29,13 +29,12 @@ const genreIds = {
 let topRatedMovies = [];
 let currentMovieIndex = 0;
 
-// Function to fetch movies by genre
 async function fetchMoviesByGenre(genreId, page = 1) {
     try {
         const url = `${MOVIES_API_URL}${genreId}&page=${page}`;
         const response = await fetch(url);
         const data = await response.json();
-        return data.results; // Return movies for the genre
+        return data.results; 
     } catch (error) {
         console.error(`Fetching movies by genre failed for page ${page}:`, error);
         return [];
@@ -44,7 +43,7 @@ async function fetchMoviesByGenre(genreId, page = 1) {
 
 async function displayMoviesForAllGenres() {
     const moviesSec = document.getElementById('moviesSec');
-    moviesSec.innerHTML = ''; // Clear existing content
+    moviesSec.innerHTML = ''; 
 
     for (const [genreName, genreId] of Object.entries(genreIds)) {
         const movies = await fetchMoviesByGenre(genreId);
@@ -55,7 +54,7 @@ async function displayMoviesForAllGenres() {
         if (genreName.length >= 2) {
             genreTitle.innerHTML = genreName.charAt(0) + `<span class="second-letter">${genreName.charAt(1)}</span>` + genreName.slice(2);
         } else {
-            genreTitle.textContent = genreName; // If not, just use the genre name as is
+            genreTitle.textContent = genreName; 
         }
         genreTitle.classList.add('genre-title'); 
         genreContainer.appendChild(genreTitle);
@@ -65,12 +64,12 @@ async function displayMoviesForAllGenres() {
 
         movies.slice(0, 19).forEach(movie => {
             const movieLink = document.createElement('a');
-            movieLink.href = `HTML/Menu/eachMoviee.html?movieId=${movie.id}`; // Link to the movie detail page with movie ID
+            movieLink.href = `HTML/Menu/eachMoviee.html?movieId=${movie.id}`; 
         
             const movieImg = document.createElement('img');
             movieImg.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
             movieImg.alt = movie.title;
-            movieImg.draggable = false; // It's better to set draggable to false for better UX
+            movieImg.draggable = false; 
         
             movieLink.appendChild(movieImg);
             movieList.appendChild(movieLink);
@@ -81,20 +80,17 @@ async function displayMoviesForAllGenres() {
     }
 }
 
-// Function to fetch top-rated movies
 async function fetchTopRatedMovies() {
     try {
         const response = await fetch(TOP_RATED_API_URL);
         const data = await response.json();
-        topRatedMovies = data.results.slice(0, 5); // Get the top 5 movies
-        displayMovieDetails(); // Display the first movie immediately
+        topRatedMovies = data.results.slice(0, 5); 
+        displayMovieDetails(); 
     } catch (error) {
         console.error('Fetching top rated movies failed:', error);
     }
 }
 
-// Function to display movie details
-// Function to display movie details
 function displayMovieDetails() {
     const movie = topRatedMovies[currentMovieIndex];
     const tendSection = document.querySelector('#tend');
@@ -103,19 +99,15 @@ function displayMovieDetails() {
     tendSection.querySelector('p').textContent = movie.overview;
     tendSection.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`;
 
-    // Set up the Play button to navigate to the movie detail page
     const playButton = tendSection.querySelector('button');
     playButton.onclick = function() {
         window.location.href = `HTML/Menu/eachMoviee.html?movieId=${movie.id}`;
     };
 
-    // Update the current movie index, loop back to the first movie after the last one
     currentMovieIndex = (currentMovieIndex + 1) % topRatedMovies.length;
 }
 
-// Call these functions to populate the sections with movies and movie details
 displayMoviesForAllGenres();
 fetchTopRatedMovies();
 
-// Update the movie details every 30 seconds
 setInterval(displayMovieDetails, 10000);

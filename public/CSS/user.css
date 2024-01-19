@@ -9,3 +9,19 @@
     cursor: pointer;
     background-color: lightgreen;
 }
+
+#page-top{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+h1{
+    color: #fff;
+    font-size: 50px;
+}
+
+.spanMovie{
+    color: var(--secondary);
+}
