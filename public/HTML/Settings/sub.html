@@ -24,8 +24,12 @@
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
+        
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+        import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+
     
         const firebaseConfig = {
             apiKey: "AIzaSyBH42VD0gk48KLx74gWNU9u-Kz9z751q8A",
@@ -36,18 +40,96 @@
             appId: "1:459135185545:web:30a8f0aa37f56902824c58",
             measurementId: "G-MK82D5BEGM"
         };
-      
+    
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
 
-        firebase.initializeApp(firebaseConfig);
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                function setSubscriptionButton(subscriptionType) {
+                    const subscriptionButtonMap = {
+                        'Standard': 'standard-button',
+                        'Duo': 'duo-button',
+                        'Family': 'family-button'
+                    };
 
-        firebase.auth().onAuthStateChanged(user => {
-            if (!user) {
-                window.location.href = 'https://tvbe-24768.web.app/login.html';
-            }
-        });
-      </script>
+                    Object.values(subscriptionButtonMap).forEach(buttonId => {
+                        const button = document.getElementById(buttonId);
+                        if (button) {
+                            button.textContent = button.textContent.replace('✓ ', ''); 
+                        }
+                    });
+
+                    const selectedButtonId = subscriptionButtonMap[subscriptionType];
+                    const selectedButton = document.getElementById(selectedButtonId);
+                    if (selectedButton) {
+                        selectedButton.textContent = `✓ ${subscriptionType} Premium`;
+                    }
+                }
+                function updateSubscriptionForUser(user, newSubscriptionType) {
+                    const userRef = doc(db, "users", user.uid);
+
+                    updateDoc(userRef, {
+                        subscription: newSubscriptionType
+                    }).then(() => {
+                        console.log("Subscription updated to: " + newSubscriptionType);
+                        setSubscriptionButton(newSubscriptionType);
+                        document.getElementById('save-button').style.display = 'none'; // Hide the save button
+                    }).catch((error) => {
+                        console.error("Error updating subscription: ", error);
+                    });
+                }
+
+                const subscriptionButtons = {
+                    'standard-button': 'Standard',
+                    'duo-button': 'Duo',
+                    'family-button': 'Family'
+                };
+            
+                Object.keys(subscriptionButtons).forEach(buttonId => {
+                    const button = document.getElementById(buttonId);
+                    button.addEventListener('click', () => {
+                        const newSubscriptionType = subscriptionButtons[buttonId];
+                        if (userData.subscription !== newSubscriptionType) { // Assuming userData is available in this scope
+                            document.getElementById('save-button').style.display = 'block'; // Show the save button
+                        }
+                    });
+                });
+
+                const userRef = doc(db, "users", user.uid);
+                getDoc(userRef).then((docSnap) => {
+                    if (docSnap.exists()) {
+                        const userData = docSnap.data();
+                        setSubscriptionButton(userData.subscription);
+                    } else {
+                        console.log("No such document!");
+                    }
+                }).catch((error) => {
+                    console.log("Error getting document:", error);
+                });
+        } else {
+            window.location.href = 'https://tvbe-24768.web.app/login.html';
+        }
+    });
+</script>
+    
+      <style>
+        .button-card {
+            text-decoration: none;
+            border: 1px solid #fff;
+            background-color: #2a2929;
+            border-radius: 2px;
+            margin: 1rem 0;
+            padding: 1rem 1rem;
+            white-space: nowrap;
+            display: flex;
+            justify-content: center;
+            align-items: center;    
+            color: #fff;
+        }
+      </style>
 </head>
 <body>
 
@@ -117,56 +199,56 @@
                 </p>
                 <div class="containers">
                     <div class="card">
-                            <div class="top_container">
-                                <h3>S<span>t</span>andard</h3>
-                                    <div class="price_container">
-                                        <p class="price">4,99€</p>
-                                        <p class="price-month">A MONTH</p>
-                                    </div>
+                        <div class="top_container">
+                            <h3>S<span>t</span>andard</h3>
+                            <div class="price_container">
+                                <p class="price">4,99€</p>
+                                <p class="price-month">A MONTH</p>
                             </div>
-                                    <ul class="premium-list">
-                                        <li>One device only</li>
-                                        <li>Quality 720p</li>
-                                        <li>Unlimited content</li>
-                                        <li>Cancel any time</li>
-                                    </ul>
-                            <a href="#" class="button-card">Purchase Standard Premium</a>
+                        </div>
+                        <ul class="premium-list">
+                            <li>One device only</li>
+                            <li>Quality 720p</li>
+                            <li>Unlimited content</li>
+                            <li>Cancel any time</li>
+                        </ul>
+                        <button class="button-card" id="standard-button">Purchase Standard Premium</button>
                     </div>   
                     <div class="card">
-                        
                         <div class="top_container">
                             <h3>D<span>u</span>o</h3>
-                                <div class="price_container">
-                                    <p class="price">7,99€</p>
-                                    <p class="price-month">A MONTH</p>
-                                </div>
+                            <div class="price_container">
+                                <p class="price">7,99€</p>
+                                <p class="price-month">A MONTH</p>
+                            </div>
                         </div>
-                                <ul class="premium-list">
-                                    <li>Up to two devices at the same time</li>
-                                    <li>Quality 1080p</li>
-                                    <li>Unlimited content</li>
-                                    <li>Cancel any time</li>
-                                </ul>
-                                <a href="#" class="button-card">Purchase Duo premium</a>
+                        <ul class="premium-list">
+                            <li>Up to two devices at the same time</li>
+                            <li>Quality 1080p</li>
+                            <li>Unlimited content</li>
+                            <li>Cancel any time</li>
+                        </ul>
+                        <button class="button-card" id="duo-button">Purchase Duo premium</button>
                     </div>
-
                     <div class="card">
                         <div class="top_container">
                             <h3>F<span>a</span>mily</h3>
-                                <div class="price_container">
-                                    <p class="price">10,99€</p>
-                                    <p class="price-month">A MONTH</p>
-                                </div>
+                            <div class="price_container">
+                                <p class="price">10,99€</p>
+                                <p class="price-month">A MONTH</p>
+                            </div>
                         </div>
-                            <ul class="premium-list">
-                                <li>More than five devices at the same time</li>
-                                <li>Quality up to 4k in supported content</li>
-                                <li>Unlimited content</li>
-                                <li>Cancel any time</li>
-                            </ul>
-                            <a href="#" class="button-card">Purchase Family premium</a>
+                        <ul class="premium-list">
+                            <li>More than five devices at the same time</li>
+                            <li>Quality up to 4k in supported content</li>
+                            <li>Unlimited content</li>
+                            <li>Cancel any time</li>
+                        </ul>
+                        <button class="button-card" id="family-button">Purchase Family premium</button>
                     </div>
                 </div>
+                <button id="save-button" class="button-card" style="display: none;">Save Subscription</button>
+
         </section>
         <!-- Footer -->
         <footer>

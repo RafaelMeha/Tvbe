@@ -103,7 +103,8 @@ span{
 
 .button-card {
     text-decoration: none;
-    border: 1px solid var(--white);
+    border: 1px solid #fff;
+    background-color: #2a2929;
     border-radius: 2px;
     margin: 1rem 0;
     padding: 1rem 1rem;

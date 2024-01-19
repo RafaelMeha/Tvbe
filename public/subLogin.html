@@ -23,65 +23,88 @@
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
-    
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+        import { getFirestore, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+
         const firebaseConfig = {
-            apiKey: "AIzaSyBH42VD0gk48KLx74gWNU9u-Kz9z751q8A",
-            authDomain: "tvbe-24768.firebaseapp.com",
-            projectId: "tvbe-24768",
-            storageBucket: "tvbe-24768.appspot.com",
-            messagingSenderId: "459135185545",
-            appId: "1:459135185545:web:30a8f0aa37f56902824c58",
-            measurementId: "G-MK82D5BEGM"
-        };
-      
+                apiKey: "AIzaSyBH42VD0gk48KLx74gWNU9u-Kz9z751q8A",
+                authDomain: "tvbe-24768.firebaseapp.com",
+                projectId: "tvbe-24768",
+                storageBucket: "tvbe-24768.appspot.com",
+                messagingSenderId: "459135185545",
+                appId: "1:459135185545:web:30a8f0aa37f56902824c58",
+                measurementId: "G-MK82D5BEGM"
+            };
+
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
 
         firebase.initializeApp(firebaseConfig);
 
-        firebase.auth().onAuthStateChanged(user => {
+        const db = getFirestore(app);
+        const auth = getAuth();
+
+        onAuthStateChanged(auth, (user) => {
             if (!user) {
                 window.location.href = 'https://tvbe-24768.web.app/login.html';
             }
         });
 
+        let selectedSubscriptionType;
+
+        function updateSubscription(user) {
+        const userRef = doc(db, "users", user.uid);
+        updateDoc(userRef, {
+            subscription: selectedSubscriptionType
+        }).then(() => {
+            console.log("Subscription updated to: " + selectedSubscriptionType);
+        }).catch((error) => {
+            console.error("Error updating subscription: ", error);
+        });
+    }
+
         const standardButton = document.getElementById('standard-button');
         const duoButton = document.getElementById('duo-button');
         const familyButton = document.getElementById('family-button');
 
-        let selectedButton = null; // Keep track of the selected button
+        let selectedButton = null;
 
         function showNextButton() {
-    // Check if the 'Next' button already exists to avoid creating duplicates
         let nextButton = document.getElementById('next-button');
         if (!nextButton) {
             nextButton = document.createElement('button');
             nextButton.id = 'next-button';
             nextButton.textContent = 'Next ->';
-            nextButton.className = 'nextButton-card'; // Assign the same style class
-            nextButton.style.marginTop = '20px'; // Additional styling if needed
+            nextButton.className = 'nextButton-card';
+            nextButton.style.marginTop = '20px';
             
-            // TODO: Define what should happen when 'Next' is clicked
             nextButton.addEventListener('click', function () {
-                alert('Proceed to the next step.'); // Replace with actual navigation logic
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        updateSubscription(user);
+                        nextButton.addEventListener('click', function () {
+                            window.location.href = 'index.html';
+                        });
+                    } else {
+                        console.log("No user signed in to update subscription");
+                    }
+                });
             });
 
-            // Assuming you have a container element where the 'Next' button should be appended
-            const container = document.querySelector('#nextButton'); // Use the appropriate selector for your layout
+            const container = document.querySelector('#nextButton'); 
             container.appendChild(nextButton);
+
         }
     }
 
-        // Store the original text for each button
         const standardButtonText = standardButton.textContent;
         const duoButtonText = duoButton.textContent;
         const familyButtonText = familyButton.textContent;
 
         standardButton.addEventListener('click', function () {
             if (selectedButton !== this) {
-                // Restore the text of the previously selected button
                 if (selectedButton) {
                     if (selectedButton === standardButton) {
                         selectedButton.textContent = standardButtonText;
@@ -92,17 +115,16 @@
                     }
                 }
                 
-                // Set this button as the selected one
                 selectedButton = this;
                 this.textContent = '✓ Standard Premium';
 
-                showNextButton();
+                selectedSubscriptionType = 'Standard';
+    showNextButton();
             }
         });
 
         duoButton.addEventListener('click', function () {
             if (selectedButton !== this) {
-                // Restore the text of the previously selected button
                 if (selectedButton) {
                     if (selectedButton === standardButton) {
                         selectedButton.textContent = standardButtonText;
@@ -113,17 +135,16 @@
                     }
                 }
                 
-                // Set this button as the selected one
                 selectedButton = this;
                 this.textContent = '✓ Duo Premium';
 
+                selectedSubscriptionType = 'Duo';
                 showNextButton();
             }
         });
 
         familyButton.addEventListener('click', function () {
             if (selectedButton !== this) {
-                // Restore the text of the previously selected button
                 if (selectedButton) {
                     if (selectedButton === standardButton) {
                         selectedButton.textContent = standardButtonText;
@@ -134,17 +155,13 @@
                     }
                 }
                 
-                // Set this button as the selected one
                 selectedButton = this;
                 this.textContent = '✓ Family Premium';
 
+                selectedSubscriptionType = 'Family';
                 showNextButton();
             }
         });
-
-        
-
-
       </script>
       <style>
 
@@ -155,6 +172,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-top: 2rem;
         }
         .nextButton-card {
             text-decoration: none;
