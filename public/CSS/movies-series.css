@@ -74,11 +74,11 @@ h1::after{
     height: 1.6rem;
 }
 
-#user{
-    width: 2rem;
-    height: 2rem;
-    background: url('../ASSETS/CEOS/avatar.png') center/contain no-repeat;
+#userImage{
+    width: 40px;
+    height: 40px;
 }
+
 
 #filtros{
     width: calc(100% - 2.2rem);

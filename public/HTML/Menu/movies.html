@@ -24,6 +24,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
     
         const firebaseConfig = {
             apiKey: "AIzaSyBH42VD0gk48KLx74gWNU9u-Kz9z751q8A",
@@ -34,21 +35,30 @@
             appId: "1:459135185545:web:30a8f0aa37f56902824c58",
             measurementId: "G-MK82D5BEGM"
         };
-      
+    
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
-
-        firebase.initializeApp(firebaseConfig);
-
-        firebase.auth().onAuthStateChanged(user => {
-            if (!user) {
+        const auth = getAuth(app); 
+    
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const imgElement = document.getElementById('userImage');
+                if (imgElement) {
+                    imgElement.src = user.photoURL || '../../ASSETS/user/profile.png'; 
+                }
+            } else {
                 window.location.href = 'https://tvbe-24768.web.app/login.html';
             }
         });
-      </script>
+    </script>
+    <style>
+        #userImage{
+            width: 32px;
+            height: 32px;
+        }
+    </style>
 </head>
 <body>
-
     <header>
         <a href="../../index.html"><img src="../../ASSETS/logo/image_2023-11-21_145906080-removebg-preview.png" alt="Logo" id="logo" draggable="false"></a>
         <!-- Nav bar Menu -->
@@ -122,7 +132,9 @@
                         <input type="text" id="search" placeholder="Search movie..." class="search"/>
                         <img src="../../ASSETS/nav-icons/magnify-glass.png" alt="Magnify" id="magnify">
                     </form>
-                    <button id="user"></button>
+                    <a id="userLink" href="../Settings/user.html">
+                        <img id="userImage" src=""/>
+                    </a>                    
                 </div>
             </div>
 
@@ -155,8 +167,6 @@
                     </form>                    
             </div>
 
-            
-
             <div id="movies">
                 	
             </div>
@@ -171,6 +181,5 @@
     <!-- Script -->
     <script src="../../JS/movies.js"></script>
     <script src="../../JS/nav.js"></script>
-    <script src="../../JS/main.js"></script>
 </body>
 </html>

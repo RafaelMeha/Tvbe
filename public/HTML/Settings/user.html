@@ -18,6 +18,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+    <style>       
+        #currentPlan{
+            font-size: 1.3rem;
+            color: var(--white);
+        }
+    </style>
 </head>
 <body>
 
@@ -80,17 +87,40 @@
     <main>
         <section>
             <div id="page-top">
-                <h1>A<span class="spanMovie">c</span>count</h1>
+                <h1 class="mainTit">A<span class="spanMovie">c</span>count</h1>
             </div>
-            <article class="list" id="user-info"></article>
-            <button id="logout-button">Logout</button>
+
+            <div id="user-info">
+                <img src="../../ASSETS/user/profile.png" alt="" id="user-photo" style="cursor: pointer;">
+                <input type="file" id="profile-picture-input" accept="image/*" style="display: none;">
+                <button id="save-button" style="display: none;">Save</button>
+
+                <div id="info-1">
+                    <div id="user-email-container">
+                        <h1 id="user-nick">Username: </h1>
+                        <p id="user-email">"email@gmail.com"</p>
+                    </div>
+                    <button id="logout-button">Logout</button>
+                </div>
+            </div>
+            <span id="line"></span>
+            <div id="subscription-plan">
+                <h2>Subscription Plan</h2>
+                <p id="currentPlan">Current Plan: </p>
+                <div><button id="change-plan"><a href="sub.html">Change Plan</a></button></div>
+            </div>
         </section>
     </main>
 
     <!-- Script -->
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
-    <script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+        import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-storage.js";
+
         const firebaseConfig = {
             apiKey: "AIzaSyBH42VD0gk48KLx74gWNU9u-Kz9z751q8A",
             authDomain: "tvbe-24768.firebaseapp.com",
@@ -101,10 +131,85 @@
             measurementId: "G-MK82D5BEGM"
         };
 
-        firebase.initializeApp(firebaseConfig);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        document.getElementById('user-photo').addEventListener('click', () => {
+            document.getElementById('profile-picture-input').click();
+        });
+
+        document.getElementById('profile-picture-input').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (!file) {
+                console.log('No file selected.');
+                return;
+            }
+
+            document.getElementById('save-button').style.display = 'inline';
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                document.getElementById('user-photo').src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        document.getElementById('save-button').addEventListener('click', () => {
+            const fileInput = document.getElementById('profile-picture-input');
+            const file = fileInput.files[0];
+            if (!file) {
+                console.log('No file ready to upload.');
+                return;
+            }
+
+            const storageRef = ref(storage, 'profile-pictures/' + auth.currentUser.uid);
+
+            uploadBytes(storageRef, file).then((snapshot) => {
+                console.log('Uploaded a blob or file!');
+                return getDownloadURL(snapshot.ref);
+            }).then((downloadURL) => {
+                console.log('File available at', downloadURL);
+                document.getElementById('user-photo').src = downloadURL; 
+                const userRef = doc(db, 'users', auth.currentUser.uid);
+                return updateDoc(userRef, {
+                    profilePicture: downloadURL
+                });
+            }).then(() => {
+                console.log('Profile picture updated in Firestore.');
+                window.location.reload(); 
+            }).catch((error) => {
+                console.error('Error uploading image and updating profile:', error);
+            });
+        });
+
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+            const userRef = doc(db, "users", user.uid);
+            getDoc(userRef).then((docSnap) => {
+                if (docSnap.exists()) {
+                    const userData = docSnap.data();
+                    document.getElementById('user-nick').textContent += userData.username;
+                    document.getElementById('user-email').textContent = user.email;
+                    document.getElementById('currentPlan').textContent += userData.subscription;
+                    if (userData.profilePicture) {
+                        document.getElementById('user-photo').src = userData.profilePicture;
+                    } else {
+                        console.log("No such document!");
+                    }
+                }
+                }).catch((error) => {
+                    console.log("Error getting document:", error);
+                });
+            } else {
+                window.location.href = 'https://tvbe-24768.web.app/login.html';
+            }
+        });
 
         document.getElementById('logout-button').addEventListener('click', () => {
-            firebase.auth().signOut().then(() => {
+            auth.signOut().then(() => {
                 console.log("User signed out successfully");
                 window.location.href = 'https://tvbe-24768.web.app/login.html';
             }).catch((error) => {
@@ -112,11 +217,6 @@
             });
         });
 
-        firebase.auth().onAuthStateChanged(user => {
-            if (!user) {
-                window.location.href = 'https://tvbe-24768.web.app/login.html';
-            }
-        });
     </script>
     <script src="../../JS/nav.js"></script>
     <script src="../../JS/main.js"></script>

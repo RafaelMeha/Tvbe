@@ -2,26 +2,152 @@
     color: #000;
 }
 
-#logout-button {
-    margin-top: 20px;
-    padding: 10px 20px;
+body{
     font-size: 16px;
-    cursor: pointer;
-    background-color: lightgreen;
+}
+
+section{
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
 }
 
 #page-top{
-    position: relative;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-h1{
+.mainTit{
+    position: relative;
+    width: 100%;
     color: #fff;
     font-size: 50px;
 }
 
+.mainTit::after{
+    content:'';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--white);
+}
+
 .spanMovie{
     color: var(--secondary);
+}
+
+#user-info{
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+#info-1{
+    width: calc(100% - 4rem);
+    padding: 0rem 2rem;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#user-photo{
+    width: 18rem;
+    border-radius: 50%;
+}
+
+#user-email-container{
+    display: flex;
+    gap: .6rem;
+    flex-direction: column;
+}
+
+#user-nick{
+    color: var(--white);
+    font-size: 3.2em;
+}
+
+#user-email{
+    color: var(--nav-text);
+}
+
+#logout-button{
+    color: var(--nav-text);
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 1rem;
+    background-color: transparent;
+    border: 2px solid var(--secondary);
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+#logout-button:hover{
+    transform: scale(.9);
+    border: 2px dashed var(--secondary);
+}
+
+#line{
+    border: 1px solid white;
+}
+
+#subscription-plan{
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+}
+
+#subscription-plan h2{
+    color: var(--nav-text);
+    font-size: 2.8em;
+}
+
+#change-plan{
+    color: var(--nav-text);
+    font-size: 1.4em;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 1rem;
+    background-color: transparent;
+    border: 2px solid var(--secondary);
+    box-shadow: 0px 0px 5px var(--secondary),
+                inset 0px 0px 5px var(--secondary);
+    transition: .3s ease;
+}
+
+#change-plan:hover{
+    transform: scale(1.1);
+}
+
+#change-plan a{
+    color: var(--nav-text);
+    font-size: 1em;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 900px) {
+    #user-info{
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #user-info{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    #info-1{
+        width: calc(100% - 4rem);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }    
 }
