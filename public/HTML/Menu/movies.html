@@ -25,6 +25,8 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
+
     
         const firebaseConfig = {
             apiKey: "AIzaSyBH42VD0gk48KLx74gWNU9u-Kz9z751q8A",
@@ -40,16 +42,27 @@
         const analytics = getAnalytics(app);
         const auth = getAuth(app); 
     
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(auth, async (user) => {
             if (user) {
+                const db = getFirestore(app);
+                const userRef = doc(db, "users", user.uid); // 'users' is the collection name, and user.uid should be the document ID
+                const docSnap = await getDoc(userRef);
+
                 const imgElement = document.getElementById('userImage');
                 if (imgElement) {
-                    imgElement.src = user.photoURL || '../../ASSETS/user/profile.png'; 
+                    if (docSnap.exists()) {
+                        const userData = docSnap.data();
+                        imgElement.src = userData.profilePicture || '../../ASSETS/user/profile.png';
+                    } else {
+                        console.log("No such document in Firestore!");
+                        imgElement.src = '../../ASSETS/user/profile.png'; // Fallback image
+                    }
                 }
             } else {
                 window.location.href = 'https://tvbe-24768.web.app/login.html';
             }
         });
+
     </script>
     <style>
         #userImage{
