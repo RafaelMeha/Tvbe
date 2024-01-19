@@ -11,7 +11,8 @@
     <!-- Style -->
     <link rel="stylesheet" href="CSS/sub.css">
     <link rel="stylesheet" href="CSS/root.css">
-    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="CSS/nav.css">
+    <link rel="stylesheet" href="CSS/footer.css">
     <link rel="stylesheet" href="CSS/load.css">
 
     <!--Font Family-->
@@ -45,7 +46,101 @@
                 window.location.href = 'https://tvbe-24768.web.app/login.html';
             }
         });
+
+        // Add an event listener to the subscription buttons
+        // Add an event listener to the subscription buttons
+        // Add an event listener to the subscription buttons
+        // Add an event listener to the subscription buttons
+        const standardButton = document.getElementById('standard-button');
+        const duoButton = document.getElementById('duo-button');
+        const familyButton = document.getElementById('family-button');
+
+        let selectedButton = null; // Keep track of the selected button
+
+        // Store the original text for each button
+        const standardButtonText = standardButton.textContent;
+        const duoButtonText = duoButton.textContent;
+        const familyButtonText = familyButton.textContent;
+
+        standardButton.addEventListener('click', function () {
+            if (selectedButton !== this) {
+                // Restore the text of the previously selected button
+                if (selectedButton) {
+                    if (selectedButton === standardButton) {
+                        selectedButton.textContent = standardButtonText;
+                    } else if (selectedButton === duoButton) {
+                        selectedButton.textContent = duoButtonText;
+                    } else if (selectedButton === familyButton) {
+                        selectedButton.textContent = familyButtonText;
+                    }
+                }
+                
+                // Set this button as the selected one
+                selectedButton = this;
+                this.textContent = '✓ Standard Premium';
+            }
+        });
+
+        duoButton.addEventListener('click', function () {
+            if (selectedButton !== this) {
+                // Restore the text of the previously selected button
+                if (selectedButton) {
+                    if (selectedButton === standardButton) {
+                        selectedButton.textContent = standardButtonText;
+                    } else if (selectedButton === duoButton) {
+                        selectedButton.textContent = duoButtonText;
+                    } else if (selectedButton === familyButton) {
+                        selectedButton.textContent = familyButtonText;
+                    }
+                }
+                
+                // Set this button as the selected one
+                selectedButton = this;
+                this.textContent = '✓ Duo Premium';
+            }
+        });
+
+        familyButton.addEventListener('click', function () {
+            if (selectedButton !== this) {
+                // Restore the text of the previously selected button
+                if (selectedButton) {
+                    if (selectedButton === standardButton) {
+                        selectedButton.textContent = standardButtonText;
+                    } else if (selectedButton === duoButton) {
+                        selectedButton.textContent = duoButtonText;
+                    } else if (selectedButton === familyButton) {
+                        selectedButton.textContent = familyButtonText;
+                    }
+                }
+                
+                // Set this button as the selected one
+                selectedButton = this;
+                this.textContent = '✓ Family Premium';
+            }
+        });
+
+
+
+
       </script>
+      <style>
+        main{
+            padding: 2rem;
+        }
+        .button-card {
+            text-decoration: none;
+            border: 1px solid #fff;
+            background-color: #2a2929;
+            border-radius: 2px;
+            margin: 1rem 0;
+            padding: 1rem 1rem;
+            white-space: nowrap;
+            display: flex;
+            justify-content: center;
+            align-items: center;    
+            color: #fff;
+        }
+      </style>
 </head>
 <body>
     <main>
@@ -56,57 +151,56 @@
                 </p>
                 <div class="containers">
                     <div class="card">
-                            <div class="top_container">
-                                <h3>S<span>t</span>andard</h3>
-                                    <div class="price_container">
-                                        <p class="price">4,99€</p>
-                                        <p class="price-month">A MONTH</p>
-                                    </div>
+                        <div class="top_container">
+                            <h3>S<span>t</span>andard</h3>
+                            <div class="price_container">
+                                <p class="price">4,99€</p>
+                                <p class="price-month">A MONTH</p>
                             </div>
-                                    <ul class="premium-list">
-                                        <li>One device only</li>
-                                        <li>Quality 720p</li>
-                                        <li>Unlimited content</li>
-                                        <li>Cancel any time</li>
-                                    </ul>
-                            <a href="#" class="button-card">Purchase Standard Premium</a>
+                        </div>
+                        <ul class="premium-list">
+                            <li>One device only</li>
+                            <li>Quality 720p</li>
+                            <li>Unlimited content</li>
+                            <li>Cancel any time</li>
+                        </ul>
+                        <button class="button-card" id="standard-button">Purchase Standard Premium</button>
                     </div>   
                     <div class="card">
                         <div class="top_container">
                             <h3>D<span>u</span>o</h3>
-                                <div class="price_container">
-                                    <p class="price">7,99€</p>
-                                    <p class="price-month">A MONTH</p>
-                                </div>
+                            <div class="price_container">
+                                <p class="price">7,99€</p>
+                                <p class="price-month">A MONTH</p>
+                            </div>
                         </div>
-                                <ul class="premium-list">
-                                    <li>Up to two devices at the same time</li>
-                                    <li>Quality 1080p</li>
-                                    <li>Unlimited content</li>
-                                    <li>Cancel any time</li>
-                                </ul>
-                                <a href="#" class="button-card">Purchase Duo premium</a>
+                        <ul class="premium-list">
+                            <li>Up to two devices at the same time</li>
+                            <li>Quality 1080p</li>
+                            <li>Unlimited content</li>
+                            <li>Cancel any time</li>
+                        </ul>
+                        <button class="button-card" id="duo-button">Purchase Duo premium</button>
                     </div>
-
                     <div class="card">
                         <div class="top_container">
                             <h3>F<span>a</span>mily</h3>
-                                <div class="price_container">
-                                    <p class="price">10,99€</p>
-                                    <p class="price-month">A MONTH</p>
-                                </div>
+                            <div class="price_container">
+                                <p class="price">10,99€</p>
+                                <p class="price-month">A MONTH</p>
+                            </div>
                         </div>
-                            <ul class="premium-list">
-                                <li>More than five devices at the same time</li>
-                                <li>Quality up to 4k in supported content</li>
-                                <li>Unlimited content</li>
-                                <li>Cancel any time</li>
-                            </ul>
-                            <a href="#" class="button-card">Purchase Family premium</a>
+                        <ul class="premium-list">
+                            <li>More than five devices at the same time</li>
+                            <li>Quality up to 4k in supported content</li>
+                            <li>Unlimited content</li>
+                            <li>Cancel any time</li>
+                        </ul>
+                        <button class="button-card" id="family-button">Purchase Family premium</button>
                     </div>
+                    
                 </div>
         </section>
     </main>
-    
 </body>
 </html>
