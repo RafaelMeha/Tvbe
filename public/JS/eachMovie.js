@@ -11,18 +11,16 @@ async function fetchMovieDetails(movieId) {
         const response = await fetch(url);
         const data = await response.json();
         displayMovieDetails(data);
-        displayTrailer(data.videos.results); // Assumes that the videos are included in the response
+        displayTrailer(data.videos.results); 
     } catch (error) {
         console.error('Error fetching movie details:', error);
     }
 }
 
 function displayTrailer(videos) {
-    // Find the first trailer in the list of videos
     const trailer = videos.find(video => video.type === 'Trailer' && video.site === 'YouTube');
     if (trailer) {
         const trailerEmbedUrl = `https://www.youtube.com/embed/${trailer.key}`;
-        // Assuming you have an iframe with the id 'movie-trailer' in your HTML
         document.getElementById('movie-trailer').src = trailerEmbedUrl;
     }
 }

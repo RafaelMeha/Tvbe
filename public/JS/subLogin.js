@@ -1,4 +1,3 @@
-// Add an event listener to the subscription buttons
 const standardButton = document.getElementById('standard-button');
 const duoButton = document.getElementById('duo-button');
 const familyButton = document.getElementById('family-button');

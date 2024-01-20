@@ -25,7 +25,7 @@ async function getMovies(page) {
     
     const resp = await fetch(url);
     const respData = await resp.json();
-    totalPages = respData.total_pages; // Update total pages based on response
+    totalPages = respData.total_pages; 
 
     console.log(respData);
 
@@ -34,14 +34,13 @@ async function getMovies(page) {
 }
 
 function showMovies(series) {
-    // clear main
     main.innerHTML = "";
 
     series.forEach((serie) => {
-        const {id, poster_path, name, vote_average} = serie; // Use 'name' instead of 'title'
+        const {id, poster_path, name, vote_average} = serie; 
 
         const seriesEl = document.createElement("a");
-        seriesEl.href = `eachMoviee.html?seriesId=${id}`; // URL for movie detail
+        seriesEl.href = `eachMoviee.html?seriesId=${id}`; 
         seriesEl.classList.add("movie");
 
         const formattedVoteAverage = parseFloat(vote_average).toFixed(1);
@@ -77,7 +76,7 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
 
     currentSearchTerm = search.value;
-    currentPage = 1; // Reset to first page for new search
+    currentPage = 1;
 
     if (currentSearchTerm) {
         getMovies(currentPage);
@@ -96,7 +95,7 @@ document.getElementById("nextButton").addEventListener("click", () => {
     if (currentPage < totalPages) {
         currentPage += 1;
         getMovies(currentPage);
-        window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to the top
+        window.scrollTo({ top: 0, behavior: 'smooth' }); 
     }
 });
 
@@ -104,7 +103,7 @@ document.getElementById("prevButton").addEventListener("click", () => {
     if (currentPage > 1) {
         currentPage -= 1;
         getMovies(currentPage);
-        window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to the top
+        window.scrollTo({ top: 0, behavior: 'smooth' }); 
     }
 });
 

@@ -45,7 +45,7 @@
         onAuthStateChanged(auth, async (user) => {
             if (user) {
                 const db = getFirestore(app);
-                const userRef = doc(db, "users", user.uid); // 'users' is the collection name, and user.uid should be the document ID
+                const userRef = doc(db, "users", user.uid); 
                 const docSnap = await getDoc(userRef);
 
                 const imgElement = document.getElementById('userImage');
@@ -55,7 +55,7 @@
                         imgElement.src = userData.profilePicture || '../../ASSETS/user/profile.png';
                     } else {
                         console.log("No such document in Firestore!");
-                        imgElement.src = '../../ASSETS/user/profile.png'; // Fallback image
+                        imgElement.src = '../../ASSETS/user/profile.png'; 
                     }
                 }
             } else {
