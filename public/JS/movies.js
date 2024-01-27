@@ -15,13 +15,24 @@ const search = document.getElementById("search");
 
 getMovies(currentPage);
 
-async function getMovies(page) {
-    let url;
+async function getMovies(page, genre = null, year = null, rating = null) {
+    let url = API_BASE_URL + `?api_key=${API_KEY}&page=${page}`;
+
     if (currentSearchTerm) {
         url = `${SEARCHAPI}${currentSearchTerm}&page=${page}`;
-    } else {
+    }   else {
         url = `${API_BASE_URL}?api_key=${API_KEY}&page=${page}`;
     }
+
+    if (genre && genre !== 'a') {
+        url += `&with_genres=${genre}`;
+    }
+    if (year && year !== 'a') {
+        url += `&year=${year}`;
+    }
+    if (rating && rating !== 'a') {
+        url += `&vote_average.gte=${rating}`;
+    } 
     
     const resp = await fetch(url);
     const respData = await resp.json();
@@ -60,8 +71,6 @@ function showMovies(movies) {
     });
 }
 
-
-
 function getClassByRate(vote) {
     if (vote >= 8) {
         return "green";
@@ -72,64 +81,18 @@ function getClassByRate(vote) {
     }
 }
 
+const filtersForm = document.getElementById("filters-form");
 
-form.addEventListener("submit", (e) => {
+filtersForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    currentSearchTerm = search.value;
-    currentPage = 1;
+    const genre = filtersForm.elements["genre"].value;
+    const year = filtersForm.elements["year"].value;
+    const rating = filtersForm.elements["rating"].value;
 
-    if (currentSearchTerm) {
-        getMovies(currentPage);
-        search.value = "";
-    }
-});
-
-
-async function applyFilters(page) {
-    let url = `${API_BASE_URL}?api_key=${API_KEY}&page=${page}`;
-
-    if (currentSearchTerm) {
-        url = `${SEARCHAPI}${currentSearchTerm}&page=${page}`;
-    } else {
-        const genre = document.querySelector('[name="genre"]').value;
-        if (genre && genre !== 'a') { 
-            url += `&with_genres=${genre}`;
-        }
-
-        const year = document.querySelector('[name="year"]').value;
-        if (year && year !== 'a') { 
-            url += `&primary_release_year=${year}`;
-        }
-
-    }
-    
-    try {
-        const response = await fetch(url);
-        const respData = await response.json();
-        totalPages = respData.total_pages;
-
-        let filteredResults = respData.results;
-        const rating = document.querySelector('[name="rating"]').value;
-        if (rating && rating !== 'a') { 
-            filteredResults = filteredResults.filter(movie => Math.round(movie.vote_average) >= parseInt(rating));
-        }
-
-        showMovies(filteredResults);
-        updatePageControls();
-    } catch (error) {
-        console.error('Error fetching filtered movies:', error);
-    }
-}
-
-document.getElementById('filters-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    currentSearchTerm = '';
     currentPage = 1; 
-    applyFilters(currentPage); 
+    getMovies(currentPage, genre, year, rating);
 });
-
 
 function updatePageControls() {
     document.getElementById("currentPage").innerText = `Page ${currentPage}`;
