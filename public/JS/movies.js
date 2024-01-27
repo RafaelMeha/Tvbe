@@ -42,6 +42,20 @@ async function getMovies(page, genre = null, year = null, rating = null) {
 
     showMovies(respData.results);
     updatePageControls();
+
+    try {
+        const resp = await fetch(url);
+        if (!resp.ok) {
+            throw new Error(`API call failed: ${resp.status}`);
+        }
+        const respData = await resp.json();
+        totalPages = respData.total_pages;
+        console.log(respData);
+        showMovies(respData.results);
+        updatePageControls();
+    } catch (error) {
+        console.error("Failed to fetch movies:", error);
+    }
 }
 
 function showMovies(movies) {
